@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Torni-amo il legno — Les Tourneurs de la Basse Vallée</title>
+  <meta name="description" content="Pagina dedicata al concorso Torni-amo il legno: edizione 2026, documenti ufficiali e archivio delle edizioni passate." />
+  <style>
+    :root{
+      --bg:#f6f1ea;
+      --bg-soft:#fbf8f4;
+      --panel:rgba(255,255,255,.92);
+      --panel-solid:#ffffff;
+      --text:#201914;
+      --muted:#6d655e;
+      --line:#e7dbcf;
+      --accent:#8b5b3b;
+      --accent-dark:#6f4630;
+      --shadow:0 18px 50px rgba(28,20,15,.08);
+      --shadow-soft:0 10px 30px rgba(28,20,15,.05);
+      --radius-xl:30px;
+      --radius-lg:24px;
+      --radius-md:18px;
+      --radius-sm:14px;
+      --max:1240px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--text);
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:
+        radial-gradient(circle at top left,#fff8ef 0,transparent 28%),
+        radial-gradient(circle at top right,rgba(139,91,59,.10) 0,transparent 22%),
+        linear-gradient(180deg,#fbf8f5 0%,var(--bg) 100%);
+      line-height:1.6;
+    }
+
+    a{text-decoration:none;color:inherit}
+    img{display:block;max-width:100%}
+    .container{width:min(calc(100% - 32px),var(--max));margin:0 auto}
+    .section{padding:44px 0}
+    .surface{
+      background:var(--panel);
+      border:1px solid rgba(139,91,59,.10);
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(12px);
+      border-radius:var(--radius-lg);
+    }
+
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      background:rgba(251,248,244,.84);
+      backdrop-filter:blur(16px);
+      border-bottom:1px solid rgba(139,91,59,.08);
+    }
+
+    .nav{
+      min-height:112px;
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:18px;
+      padding-bottom:12px;
+    }
+
+    .brand{display:flex;align-items:flex-end;gap:18px;min-width:0}
+    .brand-mark{
+      width:92px;height:92px;border-radius:22px;display:grid;place-items:center;
+      background:#fff;box-shadow:0 12px 28px rgba(139,91,59,.16);padding:8px;flex:0 0 auto;
+    }
+    .brand-mark img{width:100%;height:100%;object-fit:contain;border-radius:16px}
+    .brand-text{min-width:0}
+    .brand-title{display:block;font-weight:800;letter-spacing:.01em;line-height:1.02;font-size:1.18rem}
+    .brand-sub{display:block;font-size:.9rem;color:var(--muted);margin-top:5px}
+
+    .menu{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+    .menu a{color:var(--muted);font-weight:700;font-size:.95rem}
+    .menu a:hover,.menu a.active{color:var(--text)}
+
+    .menu-toggle{
+      display:none;width:48px;height:48px;border:none;border-radius:14px;background:#fff;
+      box-shadow:var(--shadow-soft);font-size:1.2rem;cursor:pointer;
+    }
+
+    .mobile-panel{display:none;padding-bottom:14px}
+    .mobile-panel.show{display:block}
+    .mobile-menu{display:grid;gap:8px;padding:10px;background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow-soft)}
+    .mobile-menu a{padding:12px 14px;border-radius:12px;font-weight:700;color:var(--muted)}
+    .mobile-menu a:hover{background:#f8f3ed;color:var(--text)}
+
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      padding:13px 18px;border-radius:999px;border:1px solid transparent;
+      font-weight:800;transition:.2s ease;cursor:pointer;
+    }
+    .btn:hover{transform:translateY(-1px)}
+    .btn-primary{color:#fff;background:linear-gradient(135deg,var(--accent),#a26d48);box-shadow:0 12px 28px rgba(139,91,59,.22)}
+    .btn-secondary{background:#fff;border-color:var(--line);color:var(--text)}
+    .btn-ghost{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.15);color:#fff}
+
+    .hero{padding:34px 0 20px}
+    .hero-wrap{display:grid;grid-template-columns:1.02fr .98fr;gap:24px;align-items:start;}
+    .hero-copy{padding:42px;position:relative;overflow:hidden}
+    .hero-copy::after{
+      content:"";position:absolute;width:320px;height:320px;right:-140px;top:-140px;border-radius:50%;
+      background:radial-gradient(circle,rgba(139,91,59,.16),transparent 70%);pointer-events:none;
+    }
+
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:10px;padding:8px 12px;border-radius:999px;
+      font-size:.84rem;font-weight:800;letter-spacing:.02em;background:#f3e9df;color:var(--accent);margin-bottom:18px;
+    }
+
+    h1,h2,h3{margin:0;line-height:1.03;letter-spacing:-.04em}
+    h1{font-size:clamp(2.7rem,5vw,5rem);max-width:11ch}
+    h2{font-size:clamp(1.8rem,3vw,3rem)}
+    h3{font-size:1.18rem}
+    .lead{margin:18px 0 26px;color:var(--muted);font-size:1.06rem;max-width:60ch}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:26px}
+    .hero-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .meta-box{padding:16px;background:#fbf7f2;border:1px solid var(--line);border-radius:18px}
+    .meta-box strong{display:block;font-size:1.02rem;margin-bottom:4px}
+    .meta-box span{display:block;color:var(--muted);font-size:.92rem}
+
+    .hero-visual{padding:18px;display:grid;gap:16px;align-self:start;}
+    .hero-main-image{
+      min-height:420px;border-radius:26px;overflow:hidden;position:relative;
+      background:
+        linear-gradient(180deg,rgba(16,11,8,.18),rgba(16,11,8,.42)),
+        url('assets/img/galleria/generale/concorso.jpg') center/cover;
+    }
+    .hero-card-note{
+      position:absolute;left:18px;right:18px;bottom:18px;padding:18px;border-radius:18px;
+      background:rgba(255,255,255,.90);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.65);box-shadow:var(--shadow-soft);
+    }
+
+    .section-head{display:flex;justify-content:space-between;gap:20px;align-items:end;margin-bottom:22px}
+    .section-head p{margin:0;max-width:64ch;color:var(--muted)}
+
+    .next-edition{display:grid;grid-template-columns:1.02fr .98fr;gap:18px;align-items:stretch;padding:18px;border-radius:26px;background:linear-gradient(135deg,#2a211c,#5e4738);color:#fff;box-shadow:var(--shadow)}
+    .next-photo{
+      min-height:0;aspect-ratio:2908 / 4096;border-radius:22px;
+      background:linear-gradient(180deg,rgba(18,12,10,.05),rgba(18,12,10,.14)),url('assets/img/concorso/2026/2026-locandina.jpg') center/contain no-repeat,#3d2e25;
+    }
+    .next-copy{padding:18px 12px 18px 8px;display:flex;flex-direction:column;justify-content:center}
+    .next-copy p{color:rgba(255,255,255,.84);margin:14px 0 0}
+    .doc-grid{display:grid;gap:12px;margin-top:22px}
+    .doc-item{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:16px 18px;border-radius:18px;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.12)}
+    .doc-item small{display:block;color:rgba(255,255,255,.72);margin-top:4px}
+    .doc-actions{display:flex;gap:8px;flex-wrap:wrap}
+
+    .faq-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:start}
+    .faq-item{overflow:hidden;background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow-soft)}
+    .faq-item summary{position:relative;padding:20px 58px 20px 22px;list-style:none;cursor:pointer;font-weight:800;line-height:1.35}
+    .faq-item summary::-webkit-details-marker{display:none}
+    .faq-item summary::after{content:'+';position:absolute;right:20px;top:50%;width:30px;height:30px;margin-top:-15px;display:grid;place-items:center;border-radius:50%;background:#f3e9df;color:var(--accent);font-size:1.35rem;line-height:1}
+    .faq-item[open] summary::after{content:'−'}
+    .faq-answer{padding:0 22px 22px;color:var(--muted);line-height:1.65}
+    .faq-answer p{margin:0}
+    .faq-answer ul{margin:0;padding-left:20px}
+    .faq-answer strong{color:var(--text)}
+    .faq-note{margin-top:18px;padding:18px 20px;border-radius:18px;background:#f7efe7;color:var(--muted);line-height:1.6}
+    .faq-note a{color:var(--accent);font-weight:800}
+
+    .archive-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+    .archive-card{padding:24px;display:flex;flex-direction:column;gap:12px}
+    .tag{display:inline-block;padding:7px 10px;border-radius:999px;background:#f3ebe3;color:var(--accent);font-size:.82rem;font-weight:800}
+    .archive-card p{margin:0;color:var(--muted);font-size:.96rem}
+    .archive-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+
+    .cta{display:grid;grid-template-columns:1.08fr .92fr;gap:20px;padding:34px;border-radius:30px;background:linear-gradient(135deg,#241c17,#5d4737);color:#fff;box-shadow:var(--shadow)}
+    .cta p{margin:12px 0 0;color:rgba(255,255,255,.84)}
+    .cta-box{min-width:0;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:22px;padding:22px}
+    .contact-list{display:grid;gap:10px;color:rgba(255,255,255,.88)}
+    .contact-list a{overflow-wrap:anywhere;word-break:break-word}
+    .email-transition{font-size:.86rem;line-height:1.45;color:rgba(255,255,255,.70)}
+    .quick-links{display:grid;gap:8px;margin-top:16px}
+    .quick-links a{color:#fff;opacity:.92}
+    .quick-links a:hover{opacity:1}
+
+    footer{padding:0 0 56px;color:var(--muted)}
+    .footer-line{margin-top:16px;padding-top:18px;border-top:1px solid rgba(255,255,255,.12);font-size:.94rem;color:rgba(255,255,255,.72)}
+    .footer-links{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-top:10px}
+    .footer-links a{color:#fff;font-weight:750;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
+    .footer-links a:hover{color:#fff;opacity:1}
+
+    @media (max-width: 1100px){
+      .hero-wrap,.next-edition,.cta{grid-template-columns:1fr}
+    }
+
+    @media (max-width: 860px){
+      .menu{display:none}
+      .menu-toggle{display:inline-grid;place-items:center}
+      .hero-copy{padding:36px 42px 28px;}
+      .hero-meta,.archive-grid,.faq-grid{grid-template-columns:1fr}
+      .hero-main-image{min-height:300px}
+      .section-head{flex-direction:column;align-items:flex-start}
+      .brand-mark{width:70px;height:70px;margin-top:24px}
+      .nav{min-height:92px;padding-bottom:10px}
+      .brand-title{font-size:1rem}
+      .doc-item{flex-direction:column;align-items:flex-start}
+    }
+  </style>
+  <link rel="stylesheet" href="assets/css/modern-site.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a href="index.html" class="brand">
+        <span class="brand-mark"><img src="assets/img/brand/logo-associazione.png" alt="Logo Les Tourneurs de la Basse Vallée" /></span>
+        <span class="brand-text">
+          <span class="brand-title">Les Tourneurs de la Basse Vallée</span>
+          <span class="brand-sub">Associazione di appassionati della tornitura del legno</span>
+        </span>
+      </a>
+
+      <nav class="menu">
+        <a href="index.html">Home</a>
+        <a href="concorso.html" class="active">Concorso</a>
+        <a href="dispense.html">Dispense</a>
+        <a href="galleria.html">Galleria</a>
+        <a href="news.html">News</a>
+        <a href="index.html#contatti">Contatti</a>
+      </nav>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Apri menu">☰</button>
+    </div>
+
+    <div class="container mobile-panel" id="mobilePanel">
+      <div class="mobile-menu">
+        <a href="index.html">Home</a>
+        <a href="concorso.html">Concorso</a>
+        <a href="dispense.html">Dispense</a>
+        <a href="galleria.html">Galleria</a>
+        <a href="news.html">News</a>
+        <a href="index.html#contatti">Contatti</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-wrap">
+        <div class="surface hero-copy">
+          <div class="eyebrow">Concorso • Archivio • Edizioni</div>
+          <h1>Torni-amo il legno</h1>
+          <p class="lead">
+            Dal 2014 la mostra-concorso dei Tourneurs riunisce appassionati della tornitura, amici e famiglie in una festa dedicata al legno, alla creatività e all’amicizia.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#edizione-2026">Edizione 2026</a>
+            <a class="btn btn-secondary" href="#faq">Domande frequenti</a>
+            <a class="btn btn-secondary" href="#archivio">Archivio edizioni</a>
+          </div>
+        </div>
+
+        <div class="surface hero-visual">
+          <div class="hero-main-image">
+            <div class="hero-card-note">
+              <strong>Archivio del concorso “Torni-amo il legno”</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="edizione-2026">
+      <div class="container">
+        <div class="section-head">
+          <h2>Edizione 2026</h2>
+          <p>
+            L’undicesima edizione di “Torni-amo il legno” si è svolta domenica 11 ottobre 2026 a Pont-Saint-Martin. Le iscrizioni sono chiuse; qui restano consultabili i documenti ufficiali.
+          </p>
+        </div>
+
+        <div class="next-edition">
+          <div class="next-photo"></div>
+          <div class="next-copy">
+            <div class="eyebrow" style="background:rgba(255,255,255,.12);color:#fff">Edizione conclusa</div>
+            <h2 style="font-size:clamp(2rem,4vw,3.2rem)">Concorso 2026</h2>
+            <p>
+              La partecipazione era aperta ad appassionati, hobbisti e professionisti, con categorie dedicate alla tornitura del legno.
+            </p>
+
+            <div class="doc-grid">
+              <div class="doc-item">
+                <div>
+                  <strong>Regolamento 2026</strong>
+                  <small>Norme, categorie e modalità di partecipazione</small>
+                </div>
+                <div class="doc-actions">
+                  <a class="btn btn-secondary" href="assets/pdf/concorso/2026/2026-regolamento-concorso.pdf" target="_blank" rel="noopener">Apri</a>
+                  <a class="btn btn-ghost" href="assets/pdf/concorso/2026/2026-regolamento-concorso.pdf" download>Scarica</a>
+                </div>
+              </div>
+
+              <div class="doc-item">
+                <div>
+                  <strong>Modulo di iscrizione</strong>
+                  <small>Modulo online per richiedere la partecipazione</small>
+                </div>
+                <div class="doc-actions">
+                  <a class="btn btn-secondary" href="iscrizione.html">Iscrizioni chiuse</a>
+                </div>
+              </div>
+
+              <div class="doc-item">
+                <div>
+                  <strong>Scheda di accompagnamento dell’opera</strong>
+                  <small>Da stampare, compilare e firmare: serve una scheda per ogni opera</small>
+                </div>
+                <div class="doc-actions">
+                  <a class="btn btn-secondary" href="assets/pdf/concorso/2026/2026-scheda-accompagnamento-opera.pdf" target="_blank" rel="noopener">Apri</a>
+                  <a class="btn btn-ghost" href="assets/pdf/concorso/2026/2026-scheda-accompagnamento-opera.pdf" download>Scarica</a>
+                </div>
+              </div>
+
+              <div class="doc-item">
+                <div>
+                  <strong>Locandina 2026</strong>
+                </div>
+                <div class="doc-actions">
+                  <a class="btn btn-secondary" href="assets/pdf/concorso/2026/2026-locandina.pdf" target="_blank" rel="noopener">Apri</a>
+                  <a class="btn btn-ghost" href="assets/pdf/concorso/2026/2026-locandina.pdf" download>Scarica</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="section-head">
+          <h2>Domande frequenti</h2>
+          <p>Risposte rapide per scegliere la categoria, preparare le opere e completare correttamente l’iscrizione.</p>
+        </div>
+
+        <div class="faq-grid">
+          <details class="faq-item">
+            <summary>Chi può partecipare al concorso?</summary>
+            <div class="faq-answer"><p>Possono partecipare tutti gli appassionati della tornitura del legno, quindi sia hobbisti sia professionisti. Non è necessario essere soci dell’associazione.</p></div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Quanto costa e quante opere posso presentare?</summary>
+            <div class="faq-answer"><p>La partecipazione è gratuita. Ogni concorrente può presentare <strong>fino a due opere per ciascuna categoria</strong>.</p></div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Quali sono le categorie previste?</summary>
+            <div class="faq-answer">
+              <ul>
+                <li><strong>A:</strong> opere esclusivamente tornite;</li>
+                <li><strong>B:</strong> opere di carattere artistico;</li>
+                <li><strong>C:</strong> penne stilografiche e a sfera;</li>
+                <li><strong>D:</strong> trottole.</li>
+              </ul>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Qual è la differenza tra la categoria A e la B?</summary>
+            <div class="faq-answer"><p>Nella <strong>categoria A</strong> l’opera deve essere realizzata esclusivamente al tornio, con una sola essenza, senza incollaggi, stuccature o lavorazioni aggiuntive visibili; la finitura deve lasciare visibili le venature. Sono ammesse filettatura e godronatura. La <strong>categoria B</strong> ammette invece lavorazioni artistiche aggiuntive, purché la tornitura resti la lavorazione prevalente.</p></div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Posso utilizzare qualsiasi essenza di legno?</summary>
+            <div class="faq-answer"><p>Si possono utilizzare essenze lignee diverse, purché non appartengano a specie incluse negli elenchi CITES. Ricorda inoltre che un’opera iscritta nella categoria A deve essere realizzata con <strong>una sola essenza</strong>.</p></div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Quali materiali posso usare per penne e trottole?</summary>
+            <div class="faq-answer"><p>Per penne e trottole sono ammessi legni di qualsiasi essenza e pietre adatte alla tornitura. Non sono ammessi ossi, corna o resine. Nella categoria penne non sono ammessi i portamine e le opere devono essere consegnate senza supporto.</p></div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Posso firmare l’opera o applicare il mio logo?</summary>
+            <div class="faq-answer"><p>No. L’opera non deve riportare firme, loghi o altri segni che permettano di riconoscere l’autore, nemmeno sul fondo. La presenza di segni identificativi può comportare l’esclusione.</p></div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Come e quando devo iscrivermi?</summary>
+            <div class="faq-answer"><p>Per l’edizione 2026 la domanda doveva essere inviata entro il <strong>9 ottobre 2026</strong>. Le iscrizioni sono chiuse.</p></div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Serve una scheda per ogni opera?</summary>
+            <div class="faq-answer"><p>Sì. Ogni opera deve essere accompagnata dalla propria scheda, compilata e firmata in originale dall’autore. Il modello è allegato al regolamento ufficiale e va preparato anche quando l’iscrizione è stata effettuata online.</p></div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Quando devono essere consegnate le opere?</summary>
+            <div class="faq-answer"><p>Le opere spedite devono arrivare entro le ore 19:00 del <strong>9 ottobre 2026</strong>. Il regolamento consente la presentazione diretta delle opere anche entro le ore 8:30 di domenica <strong>11 ottobre 2026</strong>. Ogni opera deve avere la propria scheda di accompagnamento.</p></div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Cosa succede se un’opera della categoria A non rispetta tutti i requisiti?</summary>
+            <div class="faq-answer"><p>Se l’organizzazione rileva lavorazioni o finiture non compatibili con la categoria A, può ricollocare l’opera nella categoria B.</p></div>
+          </details>
+        </div>
+
+        <div class="faq-note">
+          Queste risposte riassumono i punti principali. In caso di dubbio fa sempre fede il <a href="assets/pdf/concorso/2026/2026-regolamento-concorso.pdf" target="_blank" rel="noopener">Regolamento ufficiale 2026</a>. Per un caso particolare puoi anche <a href="mailto:tourneursvda@gmail.com?subject=Informazioni%20concorso%202026">scrivere all’associazione</a>.
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="archivio">
+      <div class="container">
+        <div class="section-head">
+          <h2>Archivio edizioni</h2>
+          <p>
+            Le edizioni sono ordinate dalla più recente alla prima. Nel 2020 e nel 2021 il concorso non si è svolto.
+          </p>
+        </div>
+
+        <div class="archive-grid">
+          <article class="surface archive-card">
+            <span class="tag">10ª edizione · 2025</span>
+            <h3>Torni-amo il legno 2025</h3>
+            <p>
+              Opere e classifiche ufficiali disponibili.
+            </p>
+            <div class="archive-actions">
+              <a class="btn btn-primary" href="concorso-2025.html">Apri edizione</a>
+              <a class="btn btn-secondary" href="concorso-2025.html#galleria">Vedi galleria</a>
+              <a class="btn btn-secondary" href="concorso-2025.html#classifica">Vedi classifica</a>
+            </div>
+          </article>
+
+          <article class="surface archive-card">
+            <span class="tag">9ª edizione · 2024</span>
+            <h3>Torni-amo il legno 2024</h3>
+            <p>
+              Fotografie, classifica ufficiale e locandina sono disponibili nell’archivio dell’edizione.
+            </p>
+            <div class="archive-actions">
+              <a class="btn btn-primary" href="concorso-2024.html">Apri edizione</a>
+              <a class="btn btn-secondary" href="concorso-2024.html#galleria">Vedi galleria</a>
+              <a class="btn btn-secondary" href="concorso-2024.html#classifica">Vedi classifica</a>
+            </div>
+          </article>
+
+          <article class="surface archive-card">
+            <span class="tag">8ª edizione · 2023</span>
+            <h3>Torni-amo il legno 2023</h3>
+            <p>Album delle opere e classifiche ufficiali dell’ottava edizione.</p>
+            <div class="archive-actions">
+              <a class="btn btn-primary" href="concorso-2023.html">Apri edizione</a>
+              <a class="btn btn-secondary" href="concorso-2023.html#galleria">Vedi galleria</a>
+              <a class="btn btn-secondary" href="concorso-2023.html#classifica">Vedi classifica</a>
+            </div>
+          </article>
+
+          <article class="surface archive-card">
+            <span class="tag">7ª edizione · 2022</span>
+            <h3>Torni-amo il legno 2022</h3>
+            <p>La ripresa del concorso con opere e classifiche delle diverse categorie.</p>
+            <div class="archive-actions">
+              <a class="btn btn-primary" href="concorso-2022.html">Apri edizione</a>
+              <a class="btn btn-secondary" href="concorso-2022.html#galleria">Vedi galleria</a>
+              <a class="btn btn-secondary" href="concorso-2022.html#classifica">Vedi classifica</a>
+            </div>
+          </article>
+
+          <article class="surface archive-card">
+            <span class="tag">6ª edizione · 2019</span>
+            <h3>Torni-amo il legno 2019</h3>
+            <p>49 concorrenti e 100 opere presentate nelle sezioni tornitura e artistica.</p>
+            <div class="archive-actions">
+              <a class="btn btn-primary" href="concorso-2019.html">Apri edizione</a>
+              <a class="btn btn-secondary" href="concorso-2019.html#galleria">Vedi galleria</a>
+              <a class="btn btn-secondary" href="concorso-2019.html#classifica">Vedi classifica</a>
+            </div>
+          </article>
+
+          <article class="surface archive-card">
+            <span class="tag">5ª edizione · 2018</span>
+            <h3>Torni-amo il legno 2018</h3>
+            <p>Una selezione dall’album ufficiale e la classifica finale corretta.</p>
+            <div class="archive-actions">
+              <a class="btn btn-primary" href="concorso-2018.html">Apri edizione</a>
+              <a class="btn btn-secondary" href="concorso-2018.html#galleria">Vedi galleria</a>
+              <a class="btn btn-secondary" href="concorso-2018.html#classifica">Vedi classifica</a>
+            </div>
+          </article>
+
+          <article class="surface archive-card">
+            <span class="tag">4ª edizione · 2017</span>
+            <h3>Torni-amo il legno 2017</h3>
+            <p>Fotografie dell’album ufficiale disponibili.</p>
+            <div class="archive-actions">
+              <a class="btn btn-primary" href="concorso-2017.html">Apri edizione</a>
+              <a class="btn btn-secondary" href="concorso-2017.html#galleria">Vedi galleria</a>
+              
+            </div>
+          </article>
+
+          <article class="surface archive-card">
+            <span class="tag">3ª edizione · 2016</span>
+            <h3>Torni-amo il legno 2016</h3>
+            <p>Album fotografico e locandina ufficiale disponibili.</p>
+            <div class="archive-actions">
+              <a class="btn btn-primary" href="concorso-2016.html">Apri edizione</a>
+              <a class="btn btn-secondary" href="concorso-2016.html#galleria">Vedi galleria</a>
+              
+            </div>
+          </article>
+
+          <article class="surface archive-card">
+            <span class="tag">2ª edizione · 2015</span><h3>Torni-amo il legno 2015</h3><p>35 concorrenti, 75 opere e circa 450 presenze.</p><div class="archive-actions"><a class="btn btn-primary" href="concorso-2015.html">Apri edizione</a><a class="btn btn-secondary" href="concorso-2015.html#galleria">Vedi galleria</a><a class="btn btn-secondary" href="concorso-2015.html#classifica">Vedi classifica</a></div>
+          </article>
+
+          <article class="surface archive-card">
+            <span class="tag">1ª edizione · 2014</span><h3>Torni-amo il legno 2014</h3><p>38 tornitori, 56 opere e circa 400 visitatori.</p><div class="archive-actions"><a class="btn btn-primary" href="concorso-2014.html">Apri edizione</a><a class="btn btn-secondary" href="concorso-2014.html#galleria">Vedi galleria</a><a class="btn btn-secondary" href="concorso-2014.html#classifica">Vedi classifica</a></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contatti">
+      <div class="container">
+        <div class="cta">
+          <div>
+            <div class="eyebrow" style="background:rgba(255,255,255,.12);color:#fff">Contatti</div>
+            <h2>Contatti e informazioni</h2>
+            <p>
+              Associazione senza scopo di lucro di artigiani, hobbisti e professionisti “LES TOURNEURS DE LA BASSE VALLÉE”.
+            </p>
+            <p>
+              Per informazioni sulle attività dell’associazione, sul concorso e sul materiale disponibile, è possibile contattarci direttamente.
+            </p>
+          </div>
+
+          <div class="cta-box">
+            <div style="font-weight:800; margin-bottom:14px; font-size:1.05rem">Associazione LES TOURNEURS DE LA BASSE VALLÉE</div>
+            <div class="contact-list">
+              <div><strong>Sede:</strong> Via Castello 12, 11026 Pont-Saint-Martin (AO)</div>
+              <div><strong>Codice fiscale:</strong> 91054370076</div>
+              <div><strong>Legale rappresentante:</strong> Ezio CAIELLI</div>
+              <div><strong>Email:</strong> <a href="mailto:tourneursvda@gmail.com">tourneursvda@gmail.com</a></div>
+              <div class="email-transition">Per le comunicazioni, utilizza questo indirizzo email.</div>
+              <div><strong>Telefono:</strong> <a href="tel:+393488128642">348 812 8642</a></div>
+              <div><strong>Facebook:</strong> <a href="https://www.facebook.com/groups/tourneurs/" target="_blank" rel="noopener noreferrer">facebook.com/groups/tourneurs</a></div>
+            </div>
+
+            <div class="footer-line">
+              Associazione dedicata alla tornitura artistica su legno.
+              <div class="footer-links" aria-label="Informazioni legali"><a href="privacy.html">Privacy</a><span aria-hidden="true">·</span><a href="disclaimer.html">Disclaimer</a><span aria-hidden="true">·</span><a href="disclaimer.html#credits">Credits</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const mobilePanel = document.getElementById('mobilePanel');
+    if (menuToggle && mobilePanel) {
+      menuToggle.addEventListener('click', () => {
+        mobilePanel.classList.toggle('show');
+      });
+      mobilePanel.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => mobilePanel.classList.remove('show'));
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,296 @@
+/* Rifinitura comune delle pagine interne, senza modificarne la struttura. */
+
+html:root{
+  --shadow:0 12px 30px rgba(28,20,15,.052);
+  --shadow-soft:0 6px 18px rgba(28,20,15,.038);
+  --radius-xl:18px;
+  --radius-lg:16px;
+  --radius-md:12px;
+  --radius-sm:10px;
+}
+
+html{scroll-padding-top:92px}
+
+html body{
+  overflow-x:clip;
+  font-family:"Segoe UI Variable Text","Segoe UI",Inter,system-ui,-apple-system,Roboto,Arial,sans-serif;
+  background:linear-gradient(180deg,#fcfaf8 0%,#f4eee7 100%);
+}
+
+body h1,body h2,body h3{font-weight:730;text-wrap:balance}
+body h1{letter-spacing:-.045em}
+body h2{letter-spacing:-.03em}
+
+body .surface{
+  background:rgba(255,255,255,.95);
+  border-color:rgba(106,75,56,.10);
+  border-radius:16px;
+  box-shadow:var(--shadow);
+  backdrop-filter:none;
+}
+
+body .topbar{
+  background:rgba(252,250,247,.94);
+  border-bottom-color:rgba(77,55,42,.09);
+  backdrop-filter:blur(16px) saturate(125%);
+}
+
+body .nav{min-height:76px;align-items:center;padding:7px 0}
+body .brand{align-items:center;gap:12px}
+
+body .brand-mark{
+  width:58px;
+  height:58px;
+  padding:6px;
+  border-radius:14px;
+  box-shadow:0 6px 18px rgba(92,58,39,.09);
+}
+
+body .brand-mark img{border-radius:9px}
+body .brand-title{font-size:1.02rem;letter-spacing:0}
+body .brand-sub{margin-top:2px;font-size:.8rem}
+
+/* Il modulo di iscrizione usa il logo direttamente dentro .brand. */
+body .brand > img{
+  width:58px;
+  height:58px;
+  padding:6px;
+  border-radius:14px;
+  box-shadow:0 6px 18px rgba(92,58,39,.09);
+}
+
+body .menu{gap:25px}
+body .menu a{position:relative;padding:9px 0;font-size:.9rem}
+body .menu a::after{
+  content:"";
+  position:absolute;
+  right:100%;
+  bottom:3px;
+  left:0;
+  height:2px;
+  border-radius:2px;
+  background:var(--accent);
+  transition:right .18s ease;
+}
+body .menu a:hover::after,body .menu a.active::after{right:0}
+
+body .menu-toggle{
+  width:44px;
+  height:44px;
+  border:1px solid var(--line);
+  border-radius:11px;
+  box-shadow:none;
+}
+
+body .btn{
+  min-height:44px;
+  padding:11px 17px;
+  border-radius:10px;
+  font-weight:740;
+  box-shadow:none;
+}
+body .btn-primary{background:var(--accent);box-shadow:0 7px 18px rgba(139,91,59,.13)}
+
+body .eyebrow,body .tag{border-radius:8px;font-weight:740}
+body .section{padding:52px 0}
+body .hero{padding:36px 0 26px}
+body .hero-copy{padding:40px}
+body .hero-copy::after,body .hero-card::after,body .privacy-hero-card::after,body .legal-hero-card::after{display:none}
+body .hero-visual{padding:11px;gap:11px}
+body .hero-main-image{border-radius:14px}
+body .hero-card-note{border-radius:11px}
+body .section-head{margin-bottom:24px}
+body .section-head p{max-width:58ch;line-height:1.7}
+
+body .cta,body .event-highlight,body .next-edition{
+  border-radius:18px;
+  box-shadow:0 12px 30px rgba(31,22,17,.10);
+}
+body .cta{background:#34271f}
+body .cta-box{border-radius:13px}
+
+body :is(.archive-card,.disp-card,.gallery-card,.news-card,.info-card,.faq-item,.privacy-block,.legal-block){border-radius:14px}
+body :is(.gallery-cover,.news-cover,.news-card-image,.article-cover,.edition-cover,.next-photo){border-radius:14px}
+body :is(.contest-photo,.classification-image,.album-photo,.photo-card){border-radius:12px}
+
+body input,body select,body textarea{min-height:46px;border-radius:10px}
+body input:focus,body select:focus,body textarea:focus{
+  outline:3px solid rgba(139,91,59,.16);
+  outline-offset:1px;
+}
+
+@media (hover:hover){
+  body :is(.gallery-card,.news-card,.archive-card,.disp-card){
+    transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease;
+  }
+  body :is(.gallery-card,.news-card,.archive-card,.disp-card):hover{
+    transform:translateY(-2px);
+    border-color:rgba(139,91,59,.18);
+    box-shadow:0 14px 34px rgba(28,20,15,.07);
+  }
+  body.news-page .news-card-image{transition:transform .25s ease}
+  body.news-page .news-card:hover .news-card-image{transform:scale(1.025)}
+}
+
+@media (max-width:860px){
+  html{scroll-padding-top:76px}
+  html body{font-size:16px;line-height:1.62;background:#f8f4ef}
+  body .container{width:calc(100% - 20px)}
+  body .section{padding:30px 0}
+  body .topbar{backdrop-filter:blur(14px)}
+  body .nav{min-height:68px;align-items:center;gap:10px;padding:7px 0}
+  body .brand{min-width:0;gap:9px}
+  body .brand-mark,body .brand > img{
+    width:48px;
+    height:48px;
+    margin:0;
+    padding:4px;
+    border-radius:12px;
+  }
+  body .brand-title,body .brand strong{
+    display:block;
+    max-width:25ch;
+    overflow:hidden;
+    font-size:.91rem;
+    line-height:1.08;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+  }
+  body .brand-sub,body .brand > div > span{display:none}
+  body .menu{display:none}
+  body .menu-toggle{
+    display:inline-grid;
+    flex:0 0 auto;
+    place-items:center;
+    width:44px;
+    height:44px;
+    padding:0;
+    font-size:1.25rem;
+  }
+  body .mobile-panel{padding-bottom:8px}
+  body .mobile-menu{
+    gap:3px;
+    padding:6px;
+    border-radius:12px;
+    box-shadow:0 10px 24px rgba(28,20,15,.07);
+  }
+  body .mobile-menu a{
+    display:flex;
+    min-height:44px;
+    align-items:center;
+    padding:10px 12px;
+    border-radius:8px;
+  }
+
+  body h1{font-size:clamp(2.05rem,10.5vw,2.85rem);line-height:1;letter-spacing:-.045em}
+  body h2{font-size:clamp(1.65rem,7.8vw,2.25rem);line-height:1.06}
+  body h3{line-height:1.15}
+  body .hero,body .privacy-hero,body .legal-hero{padding:16px 0 10px}
+  body :is(.hero-copy,.hero-card,.privacy-hero-card,.legal-hero-card){padding:22px;border-radius:15px}
+  body .lead,body .privacy-lead,body .legal-lead{margin-top:14px;font-size:.98rem;line-height:1.62}
+  body .eyebrow{margin-bottom:13px;padding:6px 9px;font-size:.74rem}
+
+  body :is(.hero-wrap,.two-col,.cta,.next-edition,.edition-hero,.privacy-layout,.legal-layout,.cards-grid,.gallery-grid,.gallery-grid-featured,.news-grid,.archive-grid,.classification-grid,.hero-meta,.faq-grid){
+    grid-template-columns:minmax(0,1fr);
+    gap:12px;
+  }
+
+  body .hero-visual{padding:8px;gap:8px;border-radius:15px}
+  body .hero-main-image{min-height:245px;border-radius:11px}
+  body .hero-card-note{
+    position:relative;
+    inset:auto;
+    margin:140px 8px 8px;
+    padding:11px;
+    border-radius:9px;
+    font-size:.88rem;
+  }
+  body .section-head{gap:8px;margin-bottom:17px}
+  body .section-head p{font-size:.96rem;line-height:1.58}
+
+  body :is(.archive-card,.disp-card,.gallery-content,.news-card,.news-content,.info-card,.faq-item,.edition-copy,.edition-section,.gallery-intro,.archive-intro,.privacy-content,.privacy-side,.legal-content,.legal-side,.article-container){padding:18px}
+  body :is(.gallery-cover,.news-cover,.news-card-image){border-radius:13px 13px 0 0}
+
+  /* Le news hanno una cornice interna propria: manteniamo immagine e testo
+     allineati anche dopo aver ridotto la spaziatura della scheda su mobile. */
+  body.news-page .news-card .news-content{padding:0}
+  body.news-page :is(.news-cover,.news-card-image){
+    width:calc(100% + 36px);
+    margin:-18px -18px 16px;
+  }
+  body.news-page .news-card-image{height:180px}
+
+  body :is(.hero-actions,.event-actions,.archive-actions,.disp-actions,.card-actions,.edition-actions,.doc-actions,.gallery-actions){
+    display:grid;
+    grid-template-columns:minmax(0,1fr);
+    width:100%;
+    gap:8px;
+  }
+  body :is(.hero-actions,.event-actions,.archive-actions,.disp-actions,.card-actions,.edition-actions,.doc-actions,.gallery-actions) .btn{width:100%}
+  body .btn{min-height:46px;padding:11px 13px;font-size:.92rem;text-align:center}
+
+  body .doc-item{flex-direction:column;align-items:stretch;padding:15px;border-radius:12px}
+  body .next-copy{padding:16px 4px 4px}
+  body .cta{padding:20px;border-radius:16px}
+  body .cta-box{padding:17px;border-radius:12px}
+  body .contact-list{gap:12px;font-size:.94rem}
+  body .footer-line{padding-top:15px}
+  body .edition-cover,body .next-photo{min-height:245px;border-radius:13px}
+
+  body .contest-album,body .album-strip{
+    grid-auto-columns:86%;
+    gap:10px;
+    padding-bottom:12px;
+    scroll-padding-inline:2px;
+    scrollbar-width:thin;
+  }
+  body .photo-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  body .article-cover{height:230px;margin-bottom:18px;border-radius:13px}
+  body .article-content{font-size:1rem;line-height:1.68}
+  body .article-gallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+
+  body .lightbox{width:calc(100% - 12px);max-height:calc(100dvh - 12px);border-radius:14px}
+  body .lightbox-close{top:8px;right:8px;width:44px;height:44px}
+  body .lightbox-arrow{width:44px;height:58px;margin-top:-29px}
+  body .lightbox-prev{left:6px}
+  body .lightbox-next{right:6px}
+
+  body main{min-width:0}
+  body p,body li,body a{overflow-wrap:anywhere}
+
+  /* Modulo di iscrizione */
+  body.registration-page .back{font-size:.86rem;text-align:right}
+  body.registration-page main{padding-top:26px}
+  body.registration-page :is(.intro,.form-card){padding:20px;border-radius:15px}
+  body.registration-page .intro{margin-bottom:12px}
+  body.registration-page .summary{gap:7px;margin-top:16px}
+  body.registration-page .summary .tag{padding:6px 9px;font-size:.78rem}
+  body.registration-page .grid{grid-template-columns:minmax(0,1fr);gap:14px}
+  body.registration-page .field.full,body.registration-page fieldset{grid-column:1}
+  body.registration-page fieldset{padding:16px;border-radius:12px}
+  body.registration-page .works{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  body input,body select,body textarea{font-size:16px}
+  body.registration-page .check{padding:14px;border-radius:11px}
+  body.registration-page .submit{width:100%;min-height:48px;border-radius:10px;background:var(--accent)}
+
+  /* Pagina di conferma del modulo. */
+  body > main.card{padding:24px;border-radius:16px}
+  body > main.card .btn{width:100%}
+}
+
+@media (max-width:480px){
+  body .container{width:calc(100% - 16px)}
+  body .brand-title,body .brand strong{max-width:20ch;font-size:.86rem}
+  body .photo-grid,body .article-gallery,body.registration-page .works{grid-template-columns:1fr}
+}
+
+@media (prefers-reduced-motion:reduce){
+  body *,body *::before,body *::after{
+    scroll-behavior:auto;
+    transition-duration:.01ms;
+    animation-duration:.01ms;
+    animation-iteration-count:1;
+  }
+  body :is(.gallery-card,.news-card,.archive-card,.disp-card):hover,
+  body.news-page .news-card:hover .news-card-image{transform:none}
+}

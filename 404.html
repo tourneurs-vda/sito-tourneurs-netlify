@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pagina non trovata — Les Tourneurs de la Basse Vallée</title>
+  <meta name="description" content="La pagina richiesta non è disponibile sul sito di Les Tourneurs de la Basse Vallée." />
+  <meta name="robots" content="noindex" />
+  <link rel="icon" href="/assets/img/brand/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" href="/assets/img/brand/favicon.png" />
+  <link rel="apple-touch-icon" href="/assets/img/brand/favicon.png" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a href="/index.html" class="brand" aria-label="Les Tourneurs de la Basse Vallée — Home">
+        <span class="brand-mark"><img src="/assets/img/brand/logo-associazione.png" alt="Logo Les Tourneurs de la Basse Vallée" /></span>
+        <span class="brand-text">
+          <span class="brand-title">Les Tourneurs de la Basse Vallée</span>
+          <span class="brand-sub">Associazione di appassionati della tornitura del legno</span>
+        </span>
+      </a>
+
+      <nav class="menu" aria-label="Navigazione principale">
+        <a href="/index.html">Home</a>
+        <a href="/concorso.html">Concorso</a>
+        <a href="/dispense.html">Dispense</a>
+        <a href="/galleria.html">Galleria</a>
+        <a href="/news.html">News</a>
+        <a href="/index.html#contatti">Contatti</a>
+      </nav>
+
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Apri menu" aria-controls="mobilePanel" aria-expanded="false">☰</button>
+    </div>
+
+    <div class="container mobile-panel" id="mobilePanel">
+      <nav class="mobile-menu" aria-label="Navigazione mobile">
+        <a href="/index.html">Home</a>
+        <a href="/concorso.html">Concorso</a>
+        <a href="/dispense.html">Dispense</a>
+        <a href="/galleria.html">Galleria</a>
+        <a href="/news.html">News</a>
+        <a href="/index.html#contatti">Contatti</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="surface hero-copy" style="max-width:900px;margin:0 auto;text-align:center">
+          <div class="eyebrow">Errore 404</div>
+          <h1 style="max-width:none">Pagina non trovata</h1>
+          <p class="lead" style="margin-left:auto;margin-right:auto">
+            L’indirizzo potrebbe essere errato oppure la pagina potrebbe essere stata spostata.
+          </p>
+
+          <div class="hero-actions" style="justify-content:center">
+            <a class="btn btn-primary" href="/index.html">Torna alla Home</a>
+            <a class="btn btn-secondary" href="/index.html#contatti">Contattaci</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const mobilePanel = document.getElementById('mobilePanel');
+    if (menuToggle && mobilePanel) {
+      const setMenuState = (open) => {
+        mobilePanel.classList.toggle('show', open);
+        menuToggle.setAttribute('aria-expanded', String(open));
+        menuToggle.setAttribute('aria-label', open ? 'Chiudi menu' : 'Apri menu');
+      };
+      menuToggle.addEventListener('click', () => {
+        setMenuState(!mobilePanel.classList.contains('show'));
+      });
+      mobilePanel.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => setMenuState(false));
+      });
+      document.addEventListener('keydown', event => {
+        if (event.key === 'Escape') setMenuState(false);
+      });
+    }
+  </script>
+</body>
+</html>

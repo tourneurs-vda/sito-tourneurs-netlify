@@ -1,0 +1,676 @@
+@import url('modern-site.css');
+
+:root{
+  --bg:#f6f1ea;
+  --bg-soft:#fbf8f4;
+  --panel:rgba(255,255,255,.92);
+  --panel-solid:#ffffff;
+  --text:#201914;
+  --muted:#6d655e;
+  --line:#e7dbcf;
+  --accent:#8b5b3b;
+  --accent-dark:#6f4630;
+  --shadow:0 18px 50px rgba(28,20,15,.08);
+  --shadow-soft:0 10px 30px rgba(28,20,15,.05);
+  --radius-xl:30px;
+  --radius-lg:24px;
+  --radius-md:18px;
+  --radius-sm:14px;
+  --max:1240px;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+
+body{
+  margin:0;
+  color:var(--text);
+  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  background:
+    radial-gradient(circle at top left,#fff8ef 0,transparent 28%),
+    radial-gradient(circle at top right,rgba(139,91,59,.10) 0,transparent 22%),
+    linear-gradient(180deg,#fbf8f5 0%,var(--bg) 100%);
+  line-height:1.6;
+}
+
+a{text-decoration:none;color:inherit}
+img{display:block;max-width:100%}
+.container{width:min(calc(100% - 32px),var(--max));margin:0 auto}
+.section{padding:44px 0}
+
+.surface{
+  background:var(--panel);
+  border:1px solid rgba(139,91,59,.10);
+  box-shadow:var(--shadow);
+  backdrop-filter:blur(12px);
+  border-radius:var(--radius-lg);
+}
+
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:rgba(251,248,244,.84);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(139,91,59,.08);
+}
+
+.nav{
+  min-height:112px;
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:18px;
+  padding-bottom:12px;
+}
+
+.brand{display:flex;align-items:flex-end;gap:18px;min-width:0}
+.brand-mark{
+  width:92px;
+  height:92px;
+  border-radius:22px;
+  display:grid;
+  place-items:center;
+  background:#fff;
+  box-shadow:0 12px 28px rgba(139,91,59,.16);
+  padding:8px;
+  flex:0 0 auto;
+}
+.brand-mark img{width:100%;height:100%;object-fit:contain;border-radius:16px}
+.brand-text{min-width:0}
+.brand-title{display:block;font-weight:800;letter-spacing:.01em;line-height:1.02;font-size:1.18rem}
+.brand-sub{display:block;font-size:.9rem;color:var(--muted);margin-top:5px}
+
+.menu{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.menu a{color:var(--muted);font-weight:700;font-size:.95rem}
+.menu a:hover,.menu a.active{color:var(--text)}
+
+.menu-toggle{
+  display:none;
+  width:48px;
+  height:48px;
+  border:none;
+  border-radius:14px;
+  background:#fff;
+  box-shadow:var(--shadow-soft);
+  font-size:1.2rem;
+  cursor:pointer;
+}
+
+.mobile-panel{display:none;padding-bottom:14px}
+.mobile-panel.show{display:block}
+.mobile-menu{
+  display:grid;
+  gap:8px;
+  padding:10px;
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:18px;
+  box-shadow:var(--shadow-soft);
+}
+.mobile-menu a{padding:12px 14px;border-radius:12px;font-weight:700;color:var(--muted)}
+.mobile-menu a:hover{background:#f8f3ed;color:var(--text)}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  padding:13px 18px;
+  border-radius:999px;
+  border:1px solid transparent;
+  font-weight:800;
+  transition:.2s ease;
+  cursor:pointer;
+}
+.btn:hover{transform:translateY(-1px)}
+.btn-primary{color:#fff;background:linear-gradient(135deg,var(--accent),#a26d48);box-shadow:0 12px 28px rgba(139,91,59,.22)}
+.btn-secondary{background:#fff;border-color:var(--line);color:var(--text)}
+.btn-ghost{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.15);color:#fff}
+
+.hero{padding:34px 0 20px}
+
+.hero-copy{
+  padding:42px;
+  position:relative;
+  overflow:hidden;
+}
+.hero-copy::after{
+  content:"";
+  position:absolute;
+  width:320px;
+  height:320px;
+  right:-140px;
+  top:-140px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(139,91,59,.16),transparent 70%);
+  pointer-events:none;
+}
+
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:8px 12px;
+  border-radius:999px;
+  font-size:.84rem;
+  font-weight:800;
+  letter-spacing:.02em;
+  background:#f3e9df;
+  color:var(--accent);
+  margin-bottom:18px;
+}
+
+h1,h2,h3{margin:0;line-height:1.03;letter-spacing:-.04em}
+h1{font-size:clamp(2.7rem,5vw,5rem)}
+h2{font-size:clamp(1.8rem,3vw,3rem)}
+h3{font-size:1.18rem}
+
+.lead{
+  margin:18px 0 26px;
+  color:var(--muted);
+  font-size:1.06rem;
+  max-width:60ch;
+}
+
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px}
+.hero-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.meta-box{padding:16px;background:#fbf7f2;border:1px solid var(--line);border-radius:18px}
+.meta-box strong{display:block;font-size:1.02rem;margin-bottom:4px}
+.meta-box span{display:block;color:var(--muted);font-size:.92rem}
+
+.hero-visual{padding:18px;display:grid;gap:16px}
+.hero-main-image{border-radius:26px;overflow:hidden;position:relative}
+.hero-card-note{
+  position:absolute;
+  left:18px;
+  right:18px;
+  bottom:18px;
+  padding:18px;
+  border-radius:18px;
+  background:rgba(255,255,255,.90);
+  backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,.65);
+  box-shadow:var(--shadow-soft);
+}
+
+.section-head{display:flex;justify-content:space-between;gap:20px;align-items:end;margin-bottom:22px}
+.section-head p{margin:0;max-width:64ch;color:var(--muted)}
+
+.tag{
+  display:inline-block;
+  padding:7px 10px;
+  border-radius:999px;
+  background:#f3ebe3;
+  color:var(--accent);
+  font-size:.82rem;
+  font-weight:800;
+}
+
+.cta{
+  display:grid;
+  grid-template-columns:1.08fr .92fr;
+  gap:20px;
+  padding:34px;
+  border-radius:30px;
+  background:linear-gradient(135deg,#241c17,#5d4737);
+  color:#fff;
+  box-shadow:var(--shadow);
+}
+.cta p{margin:12px 0 0;color:rgba(255,255,255,.84)}
+.cta-box{
+  min-width:0;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:22px;
+  padding:22px;
+}
+.contact-list{display:grid;gap:10px;color:rgba(255,255,255,.88)}
+.contact-list a{overflow-wrap:anywhere;word-break:break-word}
+.email-transition{font-size:.86rem;line-height:1.45;color:rgba(255,255,255,.70)}
+.quick-links{display:grid;gap:8px;margin-top:16px}
+.quick-links a{color:#fff;opacity:.92}
+.quick-links a:hover{opacity:1}
+footer{padding:0 0 56px;color:var(--muted)}
+.footer-line{
+  margin-top:16px;
+  padding-top:18px;
+  border-top:1px solid rgba(255,255,255,.12);
+  font-size:.94rem;
+  color:rgba(255,255,255,.72);
+}
+
+/* HOME */
+
+.home-page h1{font-size:clamp(2.7rem,5vw,5.2rem);max-width:10.5ch}
+.home-page .hero-wrap{display:grid;grid-template-columns:1.02fr .98fr;gap:24px;align-items:stretch}
+.home-page .hero-actions{margin-bottom:26px}
+.home-page .hero-main-image{
+  min-height:420px;
+  background:
+    linear-gradient(180deg,rgba(16,11,8,.18),rgba(16,11,8,.42)),
+    url('../img/hero/hero-tornitura-main.jpg') center/cover;
+}
+.home-page .hero-mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.home-page .hero-mini{
+  min-height:150px;
+  border-radius:22px;
+  overflow:hidden;
+  position:relative;
+  display:flex;
+  align-items:flex-end;
+  padding:18px;
+  color:#fff;
+  font-weight:800;
+  box-shadow:var(--shadow-soft);
+  background-size:cover;
+  background-position:center;
+}
+.home-page .hero-mini::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg,transparent,rgba(0,0,0,.38));
+}
+.home-page .hero-mini span{position:relative;z-index:1}
+.home-page .mini-a{background-image:url('../img/hero/hero-evento.jpg')}
+.home-page .mini-b{background-image:url('../img/hero/hero-gruppo.jpg')}
+
+.home-page #chi-siamo{
+  background:linear-gradient(180deg,#fbf8f4,#f3ebe3);
+  padding:60px 0;
+}
+.home-page .two-col{display:grid;grid-template-columns:1.02fr .98fr;gap:24px;align-items:stretch}
+.home-page .panel-pad{padding:30px}
+.home-page .muted{color:var(--muted)}
+.home-page .feature-list{display:grid;gap:14px;margin-top:18px}
+.home-page .feature{
+  display:flex;
+  align-items:flex-start;
+  gap:14px;
+  padding:16px;
+  background:#fcfaf7;
+  border:1px solid var(--line);
+  border-radius:18px;
+}
+.home-page .feature-icon{
+  width:42px;
+  height:42px;
+  border-radius:14px;
+  display:grid;
+  place-items:center;
+  background:#f2e6db;
+  color:var(--accent);
+  font-weight:900;
+  flex:0 0 auto;
+}
+.home-page .about-photo{
+  min-height:100%;
+  border-radius:24px;
+  overflow:hidden;
+  position:relative;
+  background:linear-gradient(180deg,rgba(18,12,10,.12),rgba(18,12,10,.24)),url('../img/home/home-associazione-gruppo.jpg') center/cover;
+  box-shadow:var(--shadow-soft);
+}
+.home-page .about-photo::after{
+  content:'I soci dell’associazione durante un incontro';
+  position:absolute;
+  left:16px;
+  right:16px;
+  bottom:16px;
+  padding:12px 14px;
+  border-radius:16px;
+  background:rgba(255,255,255,.92);
+  font-size:.92rem;
+  font-weight:700;
+  color:var(--text);
+}
+.home-page .highlight-section{padding-top:18px}
+.home-page .event-highlight{
+  display:grid;
+  grid-template-columns:1.04fr .96fr;
+  gap:18px;
+  padding:18px;
+  border-radius:26px;
+  background:linear-gradient(135deg,#2a211c,#5e4738);
+  color:#fff;
+  box-shadow:var(--shadow);
+}
+.home-page .event-photo{
+  min-height:330px;
+  border-radius:22px;
+  background:linear-gradient(180deg,rgba(18,12,10,.12),rgba(18,12,10,.34)),url('../img/brand/logo-concorso-torniamo.jpg') center/cover no-repeat,#3d2e25;
+  background-size:cover;
+}
+.home-page .event-copy{padding:18px 12px 18px 8px;display:flex;flex-direction:column;justify-content:center}
+.home-page .event-copy p{color:rgba(255,255,255,.84);margin:14px 0 0}
+.home-page .event-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+.home-page .cards-2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.home-page .info-card{padding:24px}
+.home-page .info-card p{margin:10px 0 0;color:var(--muted);font-size:.96rem}
+
+/* CONCORSO */
+
+.concorso-page h1{max-width:11ch}
+.concorso-page .hero-wrap{display:grid;grid-template-columns:1.02fr .98fr;gap:24px;align-items:start}
+.concorso-page .hero-actions{margin-bottom:26px}
+.concorso-page .hero-visual{align-self:start}
+.concorso-page .hero-main-image{
+  min-height:420px;
+  background:
+    linear-gradient(180deg,rgba(16,11,8,.18),rgba(16,11,8,.42)),
+    url('../img/brand/logo-concorso-torniamo.jpg') center/cover;
+}
+.concorso-page .next-edition{
+  display:grid;
+  grid-template-columns:1.02fr .98fr;
+  gap:18px;
+  padding:18px;
+  border-radius:26px;
+  background:linear-gradient(135deg,#2a211c,#5e4738);
+  color:#fff;
+  box-shadow:var(--shadow);
+}
+.concorso-page .next-photo{
+  min-height:320px;
+  border-radius:22px;
+  background:linear-gradient(180deg,rgba(18,12,10,.12),rgba(18,12,10,.34)),url('../img/brand/logo-concorso-torniamo.jpg') center/cover no-repeat,#3d2e25;
+  background-size:cover;
+}
+.concorso-page .next-copy{padding:18px 12px 18px 8px;display:flex;flex-direction:column;justify-content:center}
+.concorso-page .next-copy p{color:rgba(255,255,255,.84);margin:14px 0 0}
+.concorso-page .doc-grid{display:grid;gap:12px;margin-top:22px}
+.concorso-page .doc-item{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:14px;
+  padding:16px 18px;
+  border-radius:18px;
+  background:rgba(255,255,255,.10);
+  border:1px solid rgba(255,255,255,.12);
+}
+.concorso-page .doc-item small{display:block;color:rgba(255,255,255,.72);margin-top:4px}
+.concorso-page .doc-actions{display:flex;gap:8px;flex-wrap:wrap}
+.concorso-page .archive-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.concorso-page .archive-card{padding:24px;display:flex;flex-direction:column;gap:12px}
+.concorso-page .archive-card p{margin:0;color:var(--muted);font-size:.96rem}
+.concorso-page .archive-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+
+/* DISPENSE */
+
+.dispense-page h1{max-width:11ch}
+.dispense-page .hero-wrap{display:grid;grid-template-columns:1.02fr .98fr;gap:24px;align-items:stretch}
+.dispense-page .hero-actions{margin-bottom:26px}
+.dispense-page .hero-main-image{
+  min-height:420px;
+  background:
+    linear-gradient(180deg,rgba(16,11,8,.18),rgba(16,11,8,.42)),
+    url('../img/dispense/dispense-main.jpg') center/cover;
+}
+.dispense-page .cards-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.dispense-page .disp-card{padding:24px;display:flex;flex-direction:column;gap:12px}
+.dispense-page .disp-card p{margin:0;color:var(--muted);font-size:.96rem}
+.dispense-page .disp-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+.dispense-page .file-name{font-size:.83rem;color:var(--muted);word-break:break-all}
+
+/* GALLERIA */
+
+.galleria-page h1{max-width:10ch}
+.galleria-page .hero-wrap{display:grid;grid-template-columns:1.02fr .98fr;gap:24px;align-items:start}
+.galleria-page .hero-visual{align-self:start}
+.galleria-page .hero-main-image{
+  aspect-ratio:16 / 9;
+  background:
+    linear-gradient(180deg,rgba(16,11,8,.18),rgba(16,11,8,.42)),
+    url('../img/hero/hero-gruppo.jpg') center/cover;
+}
+.galleria-page .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.galleria-page .gallery-card{overflow:hidden;transition:.2s ease}
+.galleria-page .gallery-card:hover{transform:translateY(-2px)}
+.galleria-page .gallery-card-link{display:block;height:100%}
+.galleria-page .gallery-cover{
+  aspect-ratio:16 / 10;
+  border-radius:24px 24px 0 0;
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+}
+.galleria-page .gallery-content{padding:22px}
+.galleria-page .gallery-content p{margin:10px 0 0;color:var(--muted);font-size:.96rem}
+.galleria-page .card-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+
+/* RESPONSIVE */
+
+@media (max-width:1100px){
+  .home-page .hero-wrap,
+  .home-page .two-col,
+  .home-page .event-highlight,
+  .concorso-page .hero-wrap,
+  .concorso-page .next-edition,
+  .dispense-page .hero-wrap,
+  .galleria-page .hero-wrap,
+  .cta{
+    grid-template-columns:1fr;
+  }
+
+  .galleria-page .gallery-grid{
+    grid-template-columns:1fr 1fr;
+  }
+}
+
+@media (max-width:860px){
+  .menu{display:none}
+  .menu-toggle{display:inline-grid;place-items:center}
+
+  .hero-copy{padding:30px}
+  .hero-meta{grid-template-columns:1fr}
+  .section-head{flex-direction:column;align-items:flex-start}
+  .brand-mark{width:70px;height:70px}
+  .nav{min-height:92px;padding-bottom:10px}
+  .brand-title{font-size:1rem}
+
+  .home-page .hero-main-image,
+  .concorso-page .hero-main-image,
+  .dispense-page .hero-main-image{min-height:300px}
+
+  .home-page .hero-mini-grid,
+  .home-page .cards-2,
+  .concorso-page .archive-grid,
+  .dispense-page .cards-grid,
+  .galleria-page .gallery-grid{grid-template-columns:1fr}
+
+  .concorso-page .doc-item{flex-direction:column;align-items:flex-start}
+  .concorso-page .hero-copy{padding:36px 42px 28px}
+}
+
+/* NEWS */
+
+.news-page h1{max-width:10ch}
+
+.news-page .hero-wrap{
+  display:grid;
+  grid-template-columns:1.02fr .98fr;
+  gap:24px;
+  align-items:stretch;
+}
+
+.news-page .hero-actions{margin-bottom:26px}
+
+.news-page .hero-main-image{
+  min-height:420px;
+  background:
+    linear-gradient(180deg,rgba(16,11,8,.18),rgba(16,11,8,.42)),
+    url('../img/news/news-main.jpg') center/cover;
+}
+
+.news-page .news-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+
+.news-page .news-card{
+  overflow:hidden;
+  transition:.2s ease;
+}
+
+.news-page .news-card:hover{
+  transform:translateY(-2px);
+}
+
+.news-page .news-card-link{
+  display:block;
+  height:100%;
+}
+
+.news-page .news-cover{
+  aspect-ratio:16 / 10;
+  border-radius:24px 24px 0 0;
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+}
+
+.news-page .news-cover-concorso{
+  background-image:url('../img/brand/logo-concorso-torniamo.jpg');
+}
+
+.news-page .news-cover-associazione{
+  background-image:url('../img/home/home-associazione-gruppo.jpg');
+}
+
+.news-page .news-content{
+  padding:22px;
+}
+
+.news-page .news-content .tag{
+  margin-bottom:12px;
+}
+
+.news-page .news-content time{
+  display:block;
+  margin:0 0 12px;
+  color:var(--muted);
+  font-size:.88rem;
+  font-weight:700;
+}
+
+.news-page .news-content p{
+  margin:10px 0 0;
+  color:var(--muted);
+  font-size:.96rem;
+}
+
+.news-page .card-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:18px;
+}
+
+.news-page .news-card-placeholder{
+  padding:0;
+  display:flex;
+  align-items:stretch;
+}
+
+.news-page .news-card-placeholder .news-content{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  min-height:100%;
+}
+
+/* Responsive news */
+
+@media (max-width:1100px){
+  .news-page .hero-wrap{
+    grid-template-columns:1fr;
+  }
+
+  .news-page .news-grid{
+    grid-template-columns:1fr 1fr;
+  }
+}
+
+@media (max-width:860px){
+  .news-page .hero-main-image{
+    min-height:300px;
+  }
+
+  .news-page .news-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+/* NEWS ARTICOLO */
+
+.news-article .hero-copy{
+  padding:40px;
+}
+
+.news-date{
+  display:block;
+  margin-top:14px;
+  color:var(--muted);
+  font-weight:700;
+}
+
+.article-container{
+  max-width:900px;
+  margin:auto;
+}
+
+.article-cover{
+  height:360px;
+  border-radius:24px;
+  margin-bottom:24px;
+  background:
+    linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.4)),
+    url('../img/brand/logo-concorso-torniamo.jpg') center/cover;
+}
+
+.article-content{
+  font-size:1.05rem;
+  line-height:1.7;
+}
+
+.article-content h2{
+  margin-top:28px;
+}
+
+.article-content ul{
+  margin:16px 0;
+  padding-left:20px;
+}
+
+.article-gallery{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+  margin-top:28px;
+}
+
+.article-img{
+  aspect-ratio:1;
+  border-radius:18px;
+  background:#ddd;
+}
+
+/* Collegamenti informativi nel riquadro Contatti */
+.footer-links{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  flex-wrap:wrap;
+  margin-top:10px;
+}
+.footer-links a{
+  color:#fff;
+  font-weight:750;
+  text-decoration:underline;
+  text-decoration-thickness:1px;
+  text-underline-offset:4px;
+}
+.footer-links a:hover{color:#fff;opacity:1}

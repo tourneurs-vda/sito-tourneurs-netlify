@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Les Tourneurs de la Basse Vallée</title>
+  <meta name="description" content="Associazione di appassionati della tornitura del legno nella Bassa Valle, tra tradizione artigiana, condivisione e passione." />
+  <style>
+    :root{
+      --bg:#f6f1ea;
+      --bg-soft:#fbf8f4;
+      --panel:rgba(255,255,255,.92);
+      --panel-solid:#ffffff;
+      --text:#201914;
+      --muted:#6d655e;
+      --line:#e7dbcf;
+      --accent:#8b5b3b;
+      --accent-dark:#6f4630;
+      --shadow:0 18px 50px rgba(28,20,15,.08);
+      --shadow-soft:0 10px 30px rgba(28,20,15,.05);
+      --radius-xl:30px;
+      --radius-lg:24px;
+      --radius-md:18px;
+      --radius-sm:14px;
+      --max:1240px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--text);
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:
+        radial-gradient(circle at top left,#fff8ef 0,transparent 28%),
+        radial-gradient(circle at top right,rgba(139,91,59,.10) 0,transparent 22%),
+        linear-gradient(180deg,#fbf8f5 0%,var(--bg) 100%);
+      line-height:1.6;
+    }
+
+    a{text-decoration:none;color:inherit}
+    img{display:block;max-width:100%}
+    .container{width:min(calc(100% - 32px),var(--max));margin:0 auto}
+    .section{padding:44px 0}
+    .surface{
+      background:var(--panel);
+      border:1px solid rgba(139,91,59,.10);
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(12px);
+      border-radius:var(--radius-lg);
+    }
+
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      background:rgba(251,248,244,.84);
+      backdrop-filter:blur(16px);
+      border-bottom:1px solid rgba(139,91,59,.08);
+    }
+
+    .nav{
+      min-height:112px;
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:18px;
+      padding-bottom:12px;
+    }
+
+    .brand{display:flex;align-items:flex-end;gap:18px;min-width:0}
+    .brand-mark{
+      width:92px;height:92px;border-radius:22px;display:grid;place-items:center;
+      background:#fff;box-shadow:0 12px 28px rgba(139,91,59,.16);padding:8px;flex:0 0 auto;
+    }
+    .brand-mark img{width:100%;height:100%;object-fit:contain;border-radius:16px}
+    .brand-text{min-width:0}
+    .brand-title{display:block;font-weight:800;letter-spacing:.01em;line-height:1.02;font-size:1.18rem}
+    .brand-sub{display:block;font-size:.9rem;color:var(--muted);margin-top:5px}
+
+    .menu{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+    .menu a{color:var(--muted);font-weight:700;font-size:.95rem}
+    .menu a:hover{color:var(--text)}
+
+    .menu-toggle{
+      display:none;width:48px;height:48px;border:none;border-radius:14px;background:#fff;
+      box-shadow:var(--shadow-soft);font-size:1.2rem;cursor:pointer;
+    }
+
+    .mobile-panel{display:none;padding-bottom:14px}
+    .mobile-panel.show{display:block}
+    .mobile-menu{display:grid;gap:8px;padding:10px;background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow-soft)}
+    .mobile-menu a{padding:12px 14px;border-radius:12px;font-weight:700;color:var(--muted)}
+    .mobile-menu a:hover{background:#f8f3ed;color:var(--text)}
+
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      padding:14px 20px;border-radius:999px;border:1px solid transparent;
+      font-weight:800;transition:.2s ease;cursor:pointer;
+    }
+    .btn:hover{transform:translateY(-1px)}
+    .btn-primary{color:#fff;background:linear-gradient(135deg,var(--accent),#a26d48);box-shadow:0 12px 28px rgba(139,91,59,.22)}
+    .btn-secondary{background:#fff;border-color:var(--line);color:var(--text)}
+
+    .hero{padding:34px 0 22px}
+    .hero-wrap{display:grid;grid-template-columns:1.02fr .98fr;gap:24px;align-items:stretch}
+    .hero-copy{padding:42px;position:relative;overflow:hidden}
+    .hero-copy::after{
+      content:"";position:absolute;width:320px;height:320px;right:-140px;top:-140px;border-radius:50%;
+      background:radial-gradient(circle,rgba(139,91,59,.16),transparent 70%);pointer-events:none;
+    }
+
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:10px;padding:8px 12px;border-radius:999px;
+      font-size:.84rem;font-weight:800;letter-spacing:.02em;background:#f3e9df;color:var(--accent);margin-bottom:18px;
+    }
+
+    h1,h2,h3{margin:0;line-height:1.03;letter-spacing:-.04em}
+    h1{font-size:clamp(2.7rem,5vw,5.2rem);max-width:10.5ch}
+    h2{font-size:clamp(1.8rem,3vw,3rem)}
+    h3{font-size:1.18rem}
+    .lead{margin:18px 0 26px;color:var(--muted);font-size:1.06rem;max-width:60ch}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:26px}
+    .hero-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .meta-box{padding:16px;background:#fbf7f2;border:1px solid var(--line);border-radius:18px}
+    .meta-box strong{display:block;font-size:1.02rem;margin-bottom:4px}
+    .meta-box span{display:block;color:var(--muted);font-size:.92rem}
+
+    .hero-visual{padding:18px;display:grid;gap:16px}
+    .hero-main-image{
+      min-height:420px;border-radius:26px;overflow:hidden;position:relative;
+      background:
+        linear-gradient(180deg,rgba(16,11,8,.18),rgba(16,11,8,.42)),
+        url('assets/img/hero/hero-tornitura-main.jpg') center/cover;
+    }
+    .hero-card-note{
+      position:absolute;left:18px;right:18px;bottom:18px;padding:18px;border-radius:18px;
+      background:rgba(255,255,255,.90);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.65);box-shadow:var(--shadow-soft);
+    }
+    .hero-mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .hero-mini{
+      min-height:150px;border-radius:22px;overflow:hidden;position:relative;display:flex;align-items:flex-end;
+      padding:18px;color:#fff;font-weight:800;box-shadow:var(--shadow-soft);background-size:cover;background-position:center;
+    }
+    .hero-mini::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent,rgba(0,0,0,.38))}
+    .hero-mini span{position:relative;z-index:1}
+    .mini-a{background-image:url('assets/img/hero/hero-evento.jpg')}
+    .mini-b{background-image:url('assets/img/hero/hero-gruppo.jpg')}
+
+    #chi-siamo{
+      background:linear-gradient(180deg,#fbf8f4,#f3ebe3);
+      padding:60px 0;
+    }
+
+    .section-head{display:flex;justify-content:space-between;gap:20px;align-items:end;margin-bottom:22px}
+    .section-head p{margin:0;max-width:64ch;color:var(--muted)}
+    .two-col{display:grid;grid-template-columns:1.02fr .98fr;gap:24px;align-items:stretch}
+    .panel-pad{padding:30px}
+    .muted{color:var(--muted)}
+
+    .feature-list{display:grid;gap:14px;margin-top:18px}
+    .feature{display:flex;align-items:flex-start;gap:14px;padding:16px;background:#fcfaf7;border:1px solid var(--line);border-radius:18px}
+    .feature-icon{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;background:#f2e6db;color:var(--accent);font-weight:900;flex:0 0 auto}
+
+    .story-more{margin-top:24px;padding-top:20px;border-top:1px solid var(--line)}
+    .story-more summary{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      padding:13px 18px;border-radius:999px;color:#fff;
+      background:linear-gradient(135deg,var(--accent),#a26d48);
+      box-shadow:0 10px 24px rgba(139,91,59,.18);
+      font-weight:800;cursor:pointer;list-style:none;transition:.2s ease;
+    }
+    .story-more summary::-webkit-details-marker{display:none}
+    .story-more summary::after{content:'+';font-size:1.2rem;line-height:1;font-weight:500}
+    .story-more[open] summary::after{content:'−'}
+    .story-more summary:hover{transform:translateY(-1px)}
+    .story-more summary:focus-visible{outline:3px solid rgba(139,91,59,.28);outline-offset:3px}
+    .story-more-content{padding-top:20px;color:var(--muted);line-height:1.75}
+    .story-more-content p{margin:0 0 16px}
+    .story-more-content p:last-child{margin-bottom:0}
+
+    #attivita{padding:60px 0;background:#fffdf9}
+    .activity-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .activity-card{overflow:hidden;display:flex;flex-direction:column}
+    .activity-photo{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
+    .activity-body{padding:24px;display:flex;flex:1;flex-direction:column}
+    .activity-body h3{margin-bottom:10px}
+    .activity-body p{margin:0;color:var(--muted);line-height:1.7}
+    .activities-note{
+      margin-top:20px;padding:22px 24px;display:flex;align-items:center;
+      justify-content:space-between;gap:18px;
+    }
+    .activities-note p{margin:0;color:var(--muted);max-width:66ch}
+    .activities-actions{display:flex;flex-wrap:wrap;gap:10px;flex:0 0 auto}
+
+    .about-photo{
+      min-height:100%;border-radius:24px;overflow:hidden;position:relative;
+      background:linear-gradient(180deg,rgba(18,12,10,.12),rgba(18,12,10,.24)),url('assets/img/galleria/generale/nuova-sede.jpg') center/cover;
+      box-shadow:var(--shadow-soft);
+    }
+    .about-photo::after{
+      content:'La sede operativa e i torni dell’associazione';
+      position:absolute;left:16px;right:16px;bottom:16px;padding:12px 14px;border-radius:16px;
+      background:rgba(255,255,255,.92);font-size:.92rem;font-weight:700;color:var(--text);
+    }
+
+    .highlight-section{padding-top:18px}
+    .event-highlight{display:grid;grid-template-columns:1.04fr .96fr;gap:18px;padding:18px;border-radius:26px;background:linear-gradient(135deg,#2a211c,#5e4738);color:#fff;box-shadow:var(--shadow)}
+    .event-photo{
+      min-height:330px;border-radius:22px;
+      background:linear-gradient(180deg,rgba(18,12,10,.12),rgba(18,12,10,.34)),url('assets/img/galleria/generale/torniamo-2015.jpg') center/cover no-repeat, #3d2e25;
+      background-size:cover;
+    }
+    .event-copy{padding:18px 12px 18px 8px;display:flex;flex-direction:column;justify-content:center}
+    .event-copy p{color:rgba(255,255,255,.84);margin:14px 0 0}
+    .event-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+
+    .cards-2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+    .info-card{padding:24px}
+    .tag{display:inline-block;padding:7px 10px;border-radius:999px;background:#f3ebe3;color:var(--accent);font-size:.82rem;font-weight:800;margin-bottom:14px}
+    .info-card p{margin:10px 0 0;color:var(--muted);font-size:.96rem}
+
+    .cta{display:grid;grid-template-columns:1.08fr .92fr;gap:20px;padding:34px;border-radius:30px;background:linear-gradient(135deg,#241c17,#5d4737);color:#fff;box-shadow:var(--shadow)}
+    .cta p{margin:12px 0 0;color:rgba(255,255,255,.84)}
+    .cta-box{min-width:0;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:22px;padding:22px}
+    .contact-list{display:grid;gap:10px;color:rgba(255,255,255,.88)}
+    .contact-list a{overflow-wrap:anywhere;word-break:break-word}
+    .email-transition{font-size:.86rem;line-height:1.45;color:rgba(255,255,255,.70)}
+    .quick-links{display:grid;gap:8px;margin-top:16px}
+    .quick-links a{color:#fff;opacity:.92}
+    .quick-links a:hover{opacity:1}
+
+    footer{padding:0 0 56px;color:var(--muted)}
+    .footer-line{margin-top:16px;padding-top:18px;border-top:1px solid rgba(255,255,255,.12);font-size:.94rem;color:rgba(255,255,255,.72)}
+    .footer-links{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-top:10px}
+    .footer-links a{color:#fff;font-weight:750;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
+    .footer-links a:hover{color:#fff;opacity:1}
+
+    @media (max-width: 1100px){
+      .hero-wrap,.two-col,.event-highlight,.cta{grid-template-columns:1fr}
+      .activity-grid{grid-template-columns:repeat(2,1fr)}
+    }
+
+    @media (max-width: 860px){
+      .menu{display:none}
+      .menu-toggle{display:inline-grid;place-items:center}
+      .hero-copy{padding:30px}
+      .hero-meta,.cards-2{grid-template-columns:1fr}
+      .hero-main-image{min-height:300px}
+      .hero-mini-grid{grid-template-columns:1fr}
+      .section-head{flex-direction:column;align-items:flex-start}
+      .activity-grid{grid-template-columns:1fr}
+      .activities-note{align-items:flex-start;flex-direction:column}
+      .brand-mark{width:70px;height:70px;margin-top:24px}
+      .nav{min-height:92px;padding-bottom:10px}
+      .brand-title{font-size:1rem}
+    }
+  </style>
+  <link rel="stylesheet" href="assets/css/modern-home.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a href="index.html" class="brand">
+        <span class="brand-mark"><img src="assets/img/brand/logo-associazione.png" alt="Logo Les Tourneurs de la Basse Vallée" /></span>
+        <span class="brand-text">
+          <span class="brand-title">Les Tourneurs de la Basse Vallée</span>
+          <span class="brand-sub">Associazione di appassionati della tornitura del legno</span>
+        </span>
+      </a>
+
+      <nav class="menu">
+        <a href="index.html" class="active">Home</a>
+        <a href="concorso.html">Concorso</a>
+        <a href="dispense.html">Dispense</a>
+        <a href="galleria.html">Galleria</a>
+        <a href="news.html">News</a>
+        <a href="#contatti">Contatti</a>
+      </nav>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Apri menu">☰</button>
+    </div>
+
+    <div class="container mobile-panel" id="mobilePanel">
+      <div class="mobile-menu">
+        <a href="index.html">Home</a>
+        <a href="concorso.html">Concorso</a>
+        <a href="dispense.html">Dispense</a>
+        <a href="galleria.html">Galleria</a>
+        <a href="news.html">News</a>
+        <a href="#contatti">Contatti</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-wrap">
+        <div class="surface hero-copy">
+          <div class="eyebrow">Associazione • Territorio • Tornitura</div>
+          <h1>Tutto ruota attorno alla tornitura</h1>
+          <p class="lead">
+            Associazione di appassionati della tornitura del legno nella Bassa Valle, tra tradizione artigiana, condivisione e passione.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="concorso.html">Concorso 2026</a>
+            <a class="btn btn-secondary" href="#chi-siamo">Scopri l’associazione</a>
+          </div>
+
+          <div class="hero-meta">
+            <div class="meta-box">
+              <strong>Associazione</strong>
+              <span>Artigiani, hobbisti e professionisti uniti dalla stessa passione.</span>
+            </div>
+            <div class="meta-box">
+              <strong>Concorso</strong>
+              <span>Ogni anno il concorso “Torni-amo il legno” valorizza opere e partecipanti.</span>
+            </div>
+            <div class="meta-box">
+              <strong>Territorio</strong>
+              <span>Una realtà attiva a Pont-Saint-Martin e nella Bassa Valle.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="surface hero-visual">
+          <div class="hero-main-image"></div>
+          <div class="hero-mini-grid">
+            <div class="hero-mini mini-a"><span>Eventi e concorso</span></div>
+            <div class="hero-mini mini-b"><span>Associazione e persone</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="chi-siamo">
+      <div class="container">
+        <div class="section-head">
+          <h2>Chi siamo</h2>
+          <p>
+            Dal 2009 condividiamo la passione per la tornitura del legno e valorizziamo una tradizione profondamente legata all’artigianato valdostano.
+          </p>
+        </div>
+
+        <div class="two-col">
+          <div class="surface panel-pad">
+            <p style="margin-top:0">
+              “LES TOURNEURS DE LA BASSE VALLÉE” è un’associazione senza scopo di lucro nata nel 2009 dall’incontro di una ventina di appassionati. Riunisce artigiani, hobbisti e professionisti, ma anche persone curiose di conoscere più da vicino la tornitura artistica del legno.
+            </p>
+            <p>
+              A Pont-Saint-Martin disponiamo di un laboratorio attrezzato con dieci postazioni di tornitura, ospitato in locali messi a disposizione dal Comune. È il luogo in cui i soci possono incontrarsi, confrontarsi e trasmettere tecniche, esperienza e attenzione alla sicurezza.
+            </p>
+            <p>
+              Nel corso degli anni l’associazione ha partecipato a fiere e manifestazioni in Valle d’Aosta e in altre regioni, organizzando incontri, corsi, dimostrazioni ed eventi aperti al pubblico. Tra le iniziative più importanti c’è il concorso “Torni-amo il legno”, dedicato alla creatività e alle molte possibilità espressive offerte da questo antico mestiere.
+            </p>
+
+            <details class="story-more">
+              <summary>Scopri la nostra storia</summary>
+              <div class="story-more-content">
+                <p>
+                  La storia dei Tourneurs comincia nel 2009, quando una ventina di persone accomunate dalla passione per il legno e per il lavoro al tornio decide di riunire esperienze, capacità e idee in un’unica associazione. Da quel primo gruppo nasce una realtà aperta al confronto, nella quale artigiani, hobbisti e professionisti possono imparare gli uni dagli altri e mantenere vivo un sapere fatto di manualità, pazienza e creatività.
+                </p>
+                <p>
+                  Grazie alla collaborazione con il Comune di Pont-Saint-Martin, l’associazione ha potuto costruire nel tempo un laboratorio attrezzato con dieci postazioni di tornitura. Non è soltanto uno spazio di lavoro: è il luogo in cui i soci si incontrano, sperimentano nuove tecniche, condividono soluzioni e trasmettono ai più inesperti l’uso corretto degli utensili e l’attenzione alla sicurezza.
+                </p>
+                <p>
+                  Il legame con il territorio e con la tradizione artigiana valdostana ha accompagnato fin dall’inizio il cammino dell’associazione, che è iscritta nel “Registro dei produttori degli oggetti di Artigianato” della Regione Autonoma Valle d’Aosta. La partecipazione a fiere e manifestazioni, in Valle d’Aosta e fuori regione, ha permesso di mostrare al pubblico come un semplice pezzo di legno possa trasformarsi in un oggetto utile, in un’opera artistica o in una forma capace di raccontare la sensibilità di chi l’ha realizzata.
+                </p>
+                <p>
+                  Accanto agli incontri in laboratorio sono nati corsi, dimostrazioni ed eventi dedicati alla divulgazione. Il concorso “Torni-amo il legno” rappresenta uno dei momenti più importanti di questo percorso: un’occasione per riunire tornitori con esperienze diverse, presentare le loro opere e far conoscere a un pubblico sempre più ampio le possibilità espressive della tornitura.
+                </p>
+                <p>
+                  Oggi continuiamo questo cammino con lo stesso spirito delle origini: condividere conoscenze, coltivare l’amicizia tra i soci e avvicinare nuove persone a un’attività nella quale tecnica, materia e immaginazione si incontrano.
+                </p>
+              </div>
+            </details>
+          </div>
+
+          <div class="about-photo" aria-label="Foto di gruppo dell'associazione"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="attivita">
+      <div class="container">
+        <div class="section-head">
+          <h2>Corsi, incontri e dimostrazioni</h2>
+          <p>
+            La tornitura si impara osservando, provando e condividendo l’esperienza. Le attività dell’associazione nascono per far crescere i soci e avvicinare il pubblico a questo mestiere.
+          </p>
+        </div>
+
+        <div class="activity-grid">
+          <article class="surface activity-card">
+            <img class="activity-photo" src="assets/img/galleria/generale/rudy-pertica.jpg" alt="Dimostrazione di tornitura durante una manifestazione" loading="lazy" />
+            <div class="activity-body">
+              <span class="tag">Condivisione</span>
+              <h3>Imparare insieme</h3>
+              <p>
+                Nei momenti formativi i soci più esperti mettono a disposizione conoscenze e consigli pratici: dalla preparazione del legno all’uso degli utensili, dall’affilatura alla finitura, sempre con particolare attenzione alla sicurezza.
+              </p>
+            </div>
+          </article>
+
+          <article class="surface activity-card">
+            <img class="activity-photo" src="assets/img/galleria/generale/roberto-fiera.jpg" alt="Tornitura dal vivo davanti al pubblico durante una fiera" loading="lazy" />
+            <div class="activity-body">
+              <span class="tag">Divulgazione</span>
+              <h3>Dimostrazioni dal vivo</h3>
+              <p>
+                Durante fiere ed eventi mostriamo le diverse fasi della lavorazione al tornio. Il pubblico può seguire da vicino la trasformazione del legno, conoscere gli utensili e dialogare direttamente con i tornitori.
+              </p>
+            </div>
+          </article>
+
+          <article class="surface activity-card">
+            <img class="activity-photo" src="assets/img/galleria/generale/tornitura-in-quota-2023.jpg" alt="I soci durante l’evento Tornitura in quota al Forte di Machaby" loading="lazy" />
+            <div class="activity-body">
+              <span class="tag">Territorio</span>
+              <h3>Eventi e partecipazione</h3>
+              <p>
+                Portiamo la tornitura fuori dal laboratorio partecipando a manifestazioni e organizzando occasioni d’incontro sul territorio, come “Tornitura in quota” al Forte di Machaby nel 2023.
+              </p>
+            </div>
+          </article>
+        </div>
+
+        <div class="surface activities-note">
+          <p>
+            Vuoi conoscere i prossimi appuntamenti, assistere a una dimostrazione o ricevere informazioni sulle attività dell’associazione?
+          </p>
+          <div class="activities-actions">
+            <a class="btn btn-secondary" href="news.html">Consulta le news</a>
+            <a class="btn btn-primary" href="#contatti">Contattaci</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section highlight-section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Archivio del concorso 2026</h2>
+          <p>
+            L’undicesima edizione di “Torni-amo il legno” si è svolta domenica 11 ottobre 2026 a Pont-Saint-Martin. Nella pagina dedicata restano disponibili i documenti ufficiali e l’archivio del concorso.
+          </p>
+        </div>
+
+        <div class="event-highlight">
+          <div class="event-photo"></div>
+          <div class="event-copy">
+            <div class="eyebrow" style="background:rgba(255,255,255,.12); color:#fff; margin-bottom:16px;">Edizione conclusa</div>
+            <h2 style="font-size:clamp(2rem,4vw,3.2rem)">Torni-amo il legno 2026</h2>
+            <p>
+              L’edizione 2026 è conclusa. Nella pagina dedicata puoi consultare il regolamento, la scheda delle opere e gli altri materiali ufficiali, oltre all’archivio delle edizioni passate.
+            </p>
+            <div class="event-actions">
+              <a class="btn btn-secondary" href="concorso.html">Consulta l’archivio 2026</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Galleria e dispense</h2>
+          <p>
+            Due aree dedicate per consultare le opere delle varie edizioni e il materiale tecnico raccolto negli anni.
+          </p>
+        </div>
+
+        <div class="cards-2">
+          <article class="surface info-card">
+            <span class="tag">Galleria</span>
+            <h3>Opere ed edizioni</h3>
+            <p>Scopri le opere realizzate nelle diverse edizioni del concorso e i momenti più significativi degli eventi organizzati dall’associazione.</p>
+            <div style="margin-top:18px">
+              <a class="btn btn-secondary" href="galleria.html">Vai alla galleria</a>
+            </div>
+          </article>
+
+          <article class="surface info-card">
+            <span class="tag">Dispense</span>
+            <h3>Materiale tecnico</h3>
+            <p>Consulta le dispense tecniche realizzate negli anni: materiali utili per approfondire tecniche, lavorazioni e aspetti pratici della tornitura.</p>
+            <div style="margin-top:18px">
+              <a class="btn btn-secondary" href="dispense.html">Vai alle dispense</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contatti">
+      <div class="container">
+        <div class="cta">
+          <div>
+            <div class="eyebrow" style="background:rgba(255,255,255,.12);color:#fff">Contatti</div>
+            <h2>Contatti e informazioni</h2>
+            <p>
+              Associazione senza scopo di lucro di artigiani, hobbisti e professionisti “LES TOURNEURS DE LA BASSE VALLÉE”.
+            </p>
+            <p>
+              Per informazioni sulle attività dell’associazione, sul concorso e sul materiale disponibile, è possibile contattarci direttamente.
+            </p>
+          </div>
+
+          <div class="cta-box">
+            <div style="font-weight:800; margin-bottom:14px; font-size:1.05rem">Associazione LES TOURNEURS DE LA BASSE VALLÉE</div>
+            <div class="contact-list">
+              <div><strong>Sede:</strong> Via Castello 12, 11026 Pont-Saint-Martin (AO)</div>
+              <div><strong>Codice fiscale:</strong> 91054370076</div>
+              <div><strong>Legale rappresentante:</strong> Ezio CAIELLI</div>
+              <div><strong>Email:</strong> <a href="mailto:tourneursvda@gmail.com">tourneursvda@gmail.com</a></div>
+              <div class="email-transition">Per le comunicazioni, utilizza questo indirizzo email.</div>
+              <div><strong>Telefono:</strong> <a href="tel:+393488128642">348 812 8642</a></div>
+              <div><strong>Facebook:</strong> <a href="https://www.facebook.com/groups/tourneurs/" target="_blank" rel="noopener noreferrer">facebook.com/groups/tourneurs</a></div>
+            </div>
+
+            <div class="footer-line">
+              Associazione dedicata alla tornitura artistica su legno.
+              <div class="footer-links" aria-label="Informazioni legali"><a href="privacy.html">Privacy</a><span aria-hidden="true">·</span><a href="disclaimer.html">Disclaimer</a><span aria-hidden="true">·</span><a href="disclaimer.html#credits">Credits</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const mobilePanel = document.getElementById('mobilePanel');
+    if (menuToggle && mobilePanel) {
+      menuToggle.addEventListener('click', () => {
+        mobilePanel.classList.toggle('show');
+      });
+      mobilePanel.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => mobilePanel.classList.remove('show'));
+      });
+    }
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+backend:
+  name: git-gateway
+  branch: main
+  commit_messages:
+    update: 'Aggiorna {{collection}} “{{slug}}”'
+    uploadMedia: 'Carica immagine “{{path}}”'
+    deleteMedia: 'Elimina immagine “{{path}}”'
+
+publish_mode: simple
+media_folder: assets/img/news
+public_folder: /assets/img/news
+logo_url: /assets/img/brand/logo-associazione.png
+
+editor:
+  preview: false
+
+collections:
+  - name: news
+    label: News
+    description: Aggiungi, modifica, ordina o nascondi gli articoli pubblicati sul sito.
+    format: json
+    delete: false
+    files:
+      - name: articoli
+        label: Articoli
+        file: content/news.json
+        fields:
+          - name: articles
+            label: Articoli
+            label_singular: Articolo
+            widget: list
+            add_to_top: true
+            collapsed: true
+            summary: '{{fields.date}} — {{fields.title}}'
+            fields:
+              - name: published
+                label: Pubblicato
+                widget: boolean
+                default: true
+                hint: Disattiva per nascondere temporaneamente l’articolo senza eliminarlo.
+              - name: slug
+                label: Identificativo
+                widget: string
+                pattern:
+                  - '^[a-z0-9]+(?:-[a-z0-9]+)*$'
+                  - Usa solo lettere minuscole, numeri e trattini, per esempio “giornata-associativa-2026”.
+                hint: 'Non cambiarlo dopo la pubblicazione: viene usato nell’indirizzo dell’articolo.'
+              - name: title
+                label: Titolo
+                widget: string
+              - name: date
+                label: Data
+                widget: datetime
+                default: '{{now}}'
+                date_format: YYYY-MM-DD
+                time_format: false
+                picker_utc: true
+              - name: category
+                label: Categoria
+                widget: select
+                options:
+                  - Concorso
+                  - Associazione
+                  - Evento
+                  - Comunicazione
+                default: Associazione
+              - name: summary
+                label: Riassunto
+                widget: text
+                hint: Una o due frasi visualizzate nell’elenco delle news e nella Home.
+              - name: cover
+                label: Immagine di copertina
+                widget: image
+                required: false
+                allow_multiple: false
+                choose_url: false
+              - name: cover_alt
+                label: Descrizione dell’immagine
+                widget: string
+                required: false
+                hint: Breve descrizione utile a chi non può vedere l’immagine.
+              - name: body
+                label: Testo dell’articolo
+                widget: richtext
+                modes:
+                  - rich_text
+                buttons:
+                  - bold
+                  - italic
+                  - link
+                  - heading-two
+                  - heading-three
+                  - bulleted-list
+                  - numbered-list
+                editor_components: []
+                sanitize_preview: true

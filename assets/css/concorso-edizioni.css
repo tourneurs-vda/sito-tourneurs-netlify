@@ -1,0 +1,290 @@
+/* Stile comune delle pagine d'archivio, basato sulla 2a edizione (2015). */
+#presentazione,
+#galleria,
+#classifica,
+#risultati {
+  scroll-margin-top: 110px;
+}
+
+.edition-hero {
+  display: grid;
+  grid-template-columns: 1.05fr .95fr;
+  gap: 18px;
+}
+
+.edition-copy,
+.edition-body,
+.edition-section,
+.results,
+.classification {
+  padding: 36px;
+}
+
+.edition-copy h1 {
+  max-width: none;
+}
+
+.edition-copy p,
+.edition-body p,
+.edition-section p,
+.results p,
+.classification p {
+  color: var(--muted);
+}
+
+.edition-cover {
+  min-height: 430px;
+  background-position: center;
+  background-size: cover;
+  border-radius: 26px;
+}
+
+.edition-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 22px;
+}
+
+.results-grid,
+.classification-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.result-group,
+.classification-card,
+.notice,
+.empty-album,
+.category {
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 19px;
+  background: #fff;
+}
+
+.result-group ol {
+  padding-left: 23px;
+  color: var(--muted);
+}
+
+.result-group li {
+  margin-bottom: 8px;
+}
+
+/* Nella pagina modello la galleria rimane aperta, senza una seconda scheda bianca. */
+#galleria .edition-section {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.gallery-head,
+#galleria .edition-section > .eyebrow,
+#galleria .edition-section > h2,
+#galleria .edition-section > p,
+#galleria .edition-section > .edition-actions {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.gallery-head {
+  margin-bottom: 18px;
+}
+
+.gallery-head p,
+#galleria .edition-section > p {
+  max-width: 72ch;
+  color: var(--muted);
+}
+
+.contest-album {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(230px, 28%);
+  gap: 14px;
+  overflow-x: auto;
+  scroll-snap-type: inline mandatory;
+  padding: 2px 2px 14px;
+}
+
+.contest-photo {
+  margin: 0;
+  overflow: hidden;
+  border-radius: 18px;
+  background: #eee;
+  scroll-snap-align: start;
+}
+
+.contest-photo a {
+  display: block;
+}
+
+.contest-photo img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  transition: transform .25s ease;
+}
+
+.contest-photo a:hover img {
+  transform: scale(1.025);
+}
+
+.classification-card {
+  margin: 0;
+}
+
+.classification-card a {
+  display: block;
+}
+
+.classification-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+}
+
+.notice,
+.empty-album {
+  border-style: dashed;
+  background: #fbf7f2;
+}
+
+.empty-album {
+  padding: 34px;
+  text-align: center;
+}
+
+.categories {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.album-category + .album-category {
+  margin-top: 28px;
+}
+
+.album-controls {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+
+.lightbox {
+  width: min(930px, calc(100% - 28px));
+  max-width: none;
+  padding: 0;
+  border: 0;
+  border-radius: 22px;
+  background: #130f0c;
+  color: #fff;
+  overflow: hidden;
+}
+
+.lightbox::backdrop {
+  background: rgba(20, 14, 11, .76);
+  backdrop-filter: blur(5px);
+}
+
+.lightbox-stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 240px;
+}
+
+.lightbox-image {
+  display: block;
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  max-height: 78vh;
+  object-fit: contain;
+}
+
+.lightbox-counter {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(20, 14, 11, .72);
+  font-weight: 750;
+}
+
+.lightbox-close,
+.lightbox-arrow {
+  position: absolute;
+  z-index: 2;
+  border: 1px solid rgba(255, 255, 255, .35);
+  background: rgba(20, 14, 11, .72);
+  color: #fff;
+  cursor: pointer;
+}
+
+.lightbox-close {
+  top: 12px;
+  right: 12px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  font-size: 1.7rem;
+}
+
+.lightbox-arrow {
+  top: 50%;
+  width: 48px;
+  height: 64px;
+  margin-top: -32px;
+  border-radius: 16px;
+  font-size: 2rem;
+}
+
+.lightbox-prev { left: 12px; }
+.lightbox-next { right: 12px; }
+
+@media (max-width: 800px) {
+  .edition-hero,
+  .results-grid,
+  .classification-grid,
+  .categories {
+    grid-template-columns: 1fr;
+  }
+
+  .edition-copy,
+  .edition-body,
+  .edition-section,
+  .results,
+  .classification {
+    padding: 27px;
+  }
+
+  #galleria .edition-section {
+    padding: 0;
+  }
+
+  .edition-cover {
+    min-height: 290px;
+    order: -1;
+  }
+
+  .contest-album {
+    grid-auto-columns: 82%;
+  }
+
+  .lightbox {
+    width: calc(100% - 16px);
+  }
+}
+
+

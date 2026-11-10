@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Momenti associativi — Les Tourneurs de la Basse Vallée</title>
+  <meta name="description" content="Fotografie degli incontri, delle fiere e delle attività di Les Tourneurs de la Basse Vallée." />
+  <link rel="icon" href="assets/img/brand/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" href="assets/img/brand/favicon.png" />
+  <link rel="apple-touch-icon" href="assets/img/brand/favicon.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="it_IT" />
+  <meta property="og:site_name" content="Les Tourneurs de la Basse Vallée" />
+  <meta property="og:title" content="Momenti associativi — Les Tourneurs de la Basse Vallée" />
+  <meta property="og:description" content="Fotografie degli incontri, delle fiere e delle attività dell’associazione." />
+  <meta property="og:image" content="https://tourneurs.it/assets/img/galleria/generale/magliette-rosse.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    .gallery-intro{padding:38px;margin-bottom:24px}
+    .gallery-intro h1{max-width:none;margin-bottom:14px}
+    .gallery-intro p{max-width:70ch;margin:0;color:var(--muted)}
+    .photo-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+    .photo-card{margin:0;overflow:hidden;background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow-soft)}
+    .photo-card a{display:block;color:inherit;text-decoration:none}
+    .photo-card img{width:100%;aspect-ratio:4/3;object-fit:cover;transition:transform .25s ease}
+    .photo-card a:hover img{transform:scale(1.025)}
+    .photo-card figcaption{padding:14px 16px;font-weight:750;color:var(--text)}
+    .gallery-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+    .lightbox{width:min(920px,calc(100% - 28px));max-width:none;padding:0;border:0;border-radius:22px;background:#201914;color:#fff;box-shadow:0 24px 80px rgba(0,0,0,.45);overflow:hidden}
+    .lightbox::backdrop{background:rgba(20,14,11,.72);backdrop-filter:blur(5px)}
+    .lightbox-stage{position:relative;display:grid;place-items:center;min-height:240px;background:#130f0c}
+    .lightbox-image{display:block;max-width:100%;width:auto;height:auto;max-height:min(68vh,680px);object-fit:contain}
+    .lightbox-caption{margin:0;padding:15px 72px;text-align:center;font-weight:750;background:#201914}
+    .lightbox-close,.lightbox-arrow{position:absolute;z-index:2;display:grid;place-items:center;border:1px solid rgba(255,255,255,.35);background:rgba(20,14,11,.72);color:#fff;box-shadow:0 4px 18px rgba(0,0,0,.24);cursor:pointer}
+    .lightbox-close{top:12px;right:12px;width:44px;height:44px;border-radius:50%;font-size:1.7rem;line-height:1}
+    .lightbox-arrow{top:50%;width:48px;height:64px;margin-top:-32px;border-radius:16px;font-size:2rem}
+    .lightbox-prev{left:12px}.lightbox-next{right:12px}
+    .lightbox-counter{position:absolute;top:14px;left:14px;padding:6px 10px;border-radius:999px;background:rgba(20,14,11,.72);font-size:.86rem;font-weight:750}
+    .lightbox button:focus-visible{outline:3px solid #fff;outline-offset:3px}
+    @media(max-width:900px){.photo-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:580px){.gallery-intro{padding:26px}.photo-grid{grid-template-columns:1fr}.photo-card img{aspect-ratio:4/3}.lightbox{width:calc(100% - 20px);border-radius:17px}.lightbox-image{max-height:62vh}.lightbox-caption{padding:14px 58px;font-size:.94rem}.lightbox-arrow{width:42px;height:56px}.lightbox-prev{left:8px}.lightbox-next{right:8px}.lightbox-close{top:8px;right:8px}}
+    @media(prefers-reduced-motion:reduce){.photo-card img{transition:none}}
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a href="index.html" class="brand" aria-label="Les Tourneurs de la Basse Vallée — Home"><span class="brand-mark"><img src="assets/img/brand/logo-associazione.png" alt="Logo Les Tourneurs de la Basse Vallée" /></span><span class="brand-text"><span class="brand-title">Les Tourneurs de la Basse Vallée</span><span class="brand-sub">Associazione di appassionati della tornitura del legno</span></span></a>
+      <nav class="menu" aria-label="Navigazione principale"><a href="index.html">Home</a><a href="concorso.html">Concorso</a><a href="dispense.html">Dispense</a><a href="galleria.html" class="active">Galleria</a><a href="news.html">News</a><a href="index.html#contatti">Contatti</a></nav>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Apri menu" aria-controls="mobilePanel" aria-expanded="false">☰</button>
+    </div>
+    <div class="container mobile-panel" id="mobilePanel"><nav class="mobile-menu" aria-label="Navigazione mobile"><a href="index.html">Home</a><a href="concorso.html">Concorso</a><a href="dispense.html">Dispense</a><a href="galleria.html">Galleria</a><a href="news.html">News</a><a href="index.html#contatti">Contatti</a></nav></div>
+  </header>
+  <main>
+    <section class="section"><div class="container">
+      <div class="surface gallery-intro"><div class="eyebrow">Vita associativa</div><h1>Momenti associativi</h1><p>Rivivi alcuni degli incontri, delle fiere, delle dimostrazioni e delle giornate trascorse insieme. Seleziona una fotografia per sfogliare la raccolta.</p></div>
+      <div class="photo-grid">
+        <figure class="photo-card"><a href="assets/img/galleria/generale/magliette-rosse.jpg" target="_blank" rel="noopener"><img src="assets/img/galleria/generale/magliette-rosse.jpg" alt="Gruppo dell’associazione con le magliette rosse" loading="lazy" /><figcaption>Il gruppo dei Tourneurs</figcaption></a></figure>
+        <figure class="photo-card"><a href="assets/img/galleria/generale/tornitura-in-quota-2023.jpg" target="_blank" rel="noopener"><img src="assets/img/galleria/generale/tornitura-in-quota-2023.jpg" alt="Dimostrazione durante Tornitura in quota, evento proposto dall’associazione al Forte di Machaby nel 2023" loading="lazy" /><figcaption>Tornitura in quota — Forte di Machaby, 2023</figcaption></a></figure>
+        <figure class="photo-card"><a href="assets/img/galleria/generale/gruppo-xilexpo-2017.jpg" target="_blank" rel="noopener"><img src="assets/img/galleria/generale/gruppo-xilexpo-2017.jpg" alt="Una pausa conviviale tra i soci durante Xilexpo 2017" loading="lazy" /><figcaption>Un momento insieme a Xilexpo 2017</figcaption></a></figure>
+        <figure class="photo-card"><a href="assets/img/galleria/generale/andrea-beppe-xilexpo-2018.jpg" target="_blank" rel="noopener"><img src="assets/img/galleria/generale/andrea-beppe-xilexpo-2018.jpg" alt="Andrea e Beppe in un momento di amicizia allo stand dell’associazione" loading="lazy" /><figcaption>Andrea e Beppe a Xilexpo 2018</figcaption></a></figure>
+        <figure class="photo-card"><a href="assets/img/repertorio/xilexpo-2016-incontro-visitatore.jpg" target="_blank" rel="noopener"><img src="assets/img/repertorio/xilexpo-2016-incontro-visitatore.jpg" alt="Un visitatore incontra i Tourneurs accanto al tornio durante Xilexpo 2016" loading="lazy" /><figcaption>La tornitura crea incontri — Xilexpo 2016</figcaption></a></figure>
+        <figure class="photo-card"><a href="assets/img/repertorio/xilexpo-2016-dimostrazione-al-tornio.jpg" target="_blank" rel="noopener"><img src="assets/img/repertorio/xilexpo-2016-dimostrazione-al-tornio.jpg" alt="Dimostrazione pratica di tornitura allo stand dei Tourneurs durante Xilexpo 2016" loading="lazy" /><figcaption>Dimostrazione al tornio — Xilexpo 2016</figcaption></a></figure>
+        <figure class="photo-card"><a href="assets/img/galleria/generale/gruppo-fiera.jpg" target="_blank" rel="noopener"><img src="assets/img/galleria/generale/gruppo-fiera.jpg" alt="I soci allo stand dell’associazione durante una manifestazione dedicata alla tornitura" loading="lazy" /><figcaption>I Tourneurs in fiera</figcaption></a></figure>
+        <figure class="photo-card"><a href="assets/img/repertorio/fiera-sant-orso-aosta-2025-stand.jpg" target="_blank" rel="noopener"><img src="assets/img/repertorio/fiera-sant-orso-aosta-2025-stand.jpg" alt="Lo stand dei Tourneurs con opere e oggetti torniti alla Fiera di Sant’Orso di Aosta nel 2025" loading="lazy" /><figcaption>Lo stand alla Fiera di Sant’Orso — Aosta, 2025</figcaption></a></figure>
+        <figure class="photo-card"><a href="assets/img/galleria/generale/roberto-fiera.jpg" target="_blank" rel="noopener"><img src="assets/img/galleria/generale/roberto-fiera.jpg" alt="Roberto durante una dimostrazione di tornitura davanti al pubblico" loading="lazy" /><figcaption>Roberto al tornio</figcaption></a></figure>
+        <figure class="photo-card"><a href="assets/img/galleria/generale/paolo-giocaosta.jpg" target="_blank" rel="noopener"><img src="assets/img/galleria/generale/paolo-giocaosta.jpg" alt="Paolo mostra la lavorazione al tornio a grandi e piccoli durante GiocAosta" loading="lazy" /><figcaption>La tornitura incontra il pubblico a GiocAosta</figcaption></a></figure>
+        <figure class="photo-card"><a href="assets/img/galleria/generale/nuova-sede.jpg" target="_blank" rel="noopener"><img src="assets/img/galleria/generale/nuova-sede.jpg" alt="Il laboratorio dei Tourneurs, attrezzato per incontri, dimostrazioni e attività di tornitura" loading="lazy" /><figcaption>La sede dell’associazione</figcaption></a></figure>
+        <figure class="photo-card"><a href="assets/img/galleria/generale/concorso.jpg" target="_blank" rel="noopener"><img src="assets/img/galleria/generale/concorso.jpg" alt="Il pubblico visita l’esposizione delle opere presentate a Torni-amo il legno" loading="lazy" /><figcaption>Le opere in concorso</figcaption></a></figure>
+        <figure class="photo-card"><a href="assets/img/galleria/generale/torniamo-2015.jpg" target="_blank" rel="noopener"><img src="assets/img/galleria/generale/torniamo-2015.jpg" alt="Una panoramica della mostra-concorso durante l’edizione 2015" loading="lazy" /><figcaption>Torni-amo il legno 2015</figcaption></a></figure>
+        <figure class="photo-card"><a href="assets/img/galleria/generale/torniamo-2015-fabbro.jpg" target="_blank" rel="noopener"><img src="assets/img/galleria/generale/torniamo-2015-fabbro.jpg" alt="Il fabbro al lavoro durante Torni-amo il legno 2015" loading="lazy" /><figcaption>Dimostrazione di forgiatura</figcaption></a></figure>
+        <figure class="photo-card"><a href="assets/img/galleria/generale/beppe-tornitura.jpg" target="_blank" rel="noopener"><img src="assets/img/galleria/generale/beppe-tornitura.jpg" alt="Coppa dell’amicizia in bosso, opera artistica realizzata da Beppe" loading="lazy" /><figcaption>Coppa dell’amicizia in bosso — opera di Beppe</figcaption></a></figure>
+        <figure class="photo-card"><a href="assets/img/galleria/generale/rudy-pertica.jpg" target="_blank" rel="noopener"><img src="assets/img/galleria/generale/rudy-pertica.jpg" alt="Rudy durante una dimostrazione di tornitura tradizionale condivisa con gli altri soci" loading="lazy" /><figcaption>Rudy al tornio a pertica</figcaption></a></figure>
+        <figure class="photo-card"><a href="assets/img/galleria/generale/plane.jpg" target="_blank" rel="noopener"><img src="assets/img/galleria/generale/plane.jpg" alt="L’utensile lavora il legno al tornio per ottenere una superficie liscia e regolare" loading="lazy" /><figcaption>La plane in azione</figcaption></a></figure>
+        <figure class="photo-card"><a href="assets/img/galleria/generale/ciotola-eccentrica.jpg" target="_blank" rel="noopener"><img src="assets/img/galleria/generale/ciotola-eccentrica.jpg" alt="Opera tornita caratterizzata dalla forma asimmetrica del coperchio e dalle venature naturali del legno" loading="lazy" /><figcaption>Ciotola con coperchio a tornitura eccentrica</figcaption></a></figure>
+      </div>
+      <div class="gallery-actions"><a class="btn btn-secondary" href="galleria.html">← Torna alle raccolte</a></div>
+    </div></section>
+  </main>
+  <dialog class="lightbox" id="lightbox" aria-labelledby="lightboxCaption">
+    <div class="lightbox-stage">
+      <span class="lightbox-counter" id="lightboxCounter" aria-live="polite"></span>
+      <button class="lightbox-close" type="button" aria-label="Chiudi immagine">×</button>
+      <button class="lightbox-arrow lightbox-prev" type="button" aria-label="Immagine precedente">‹</button>
+      <img class="lightbox-image" id="lightboxImage" src="" alt="" />
+      <button class="lightbox-arrow lightbox-next" type="button" aria-label="Immagine successiva">›</button>
+    </div>
+    <p class="lightbox-caption" id="lightboxCaption"></p>
+  </dialog>
+  <script>
+    const menuToggle=document.getElementById('menuToggle');const mobilePanel=document.getElementById('mobilePanel');if(menuToggle&&mobilePanel){const setMenuState=open=>{mobilePanel.classList.toggle('show',open);menuToggle.setAttribute('aria-expanded',String(open));menuToggle.setAttribute('aria-label',open?'Chiudi menu':'Apri menu')};menuToggle.addEventListener('click',()=>setMenuState(!mobilePanel.classList.contains('show')));mobilePanel.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>setMenuState(false)));document.addEventListener('keydown',event=>{if(event.key==='Escape')setMenuState(false)})}
+    const lightbox=document.getElementById('lightbox');
+    const lightboxImage=document.getElementById('lightboxImage');
+    const lightboxCaption=document.getElementById('lightboxCaption');
+    const lightboxCounter=document.getElementById('lightboxCounter');
+    const photoLinks=[...document.querySelectorAll('.photo-card a')];
+    let currentPhoto=0;
+    let touchStartX=0;
+    const showPhoto=index=>{
+      currentPhoto=(index+photoLinks.length)%photoLinks.length;
+      const link=photoLinks[currentPhoto];
+      const thumb=link.querySelector('img');
+      lightboxImage.src=link.href;
+      lightboxImage.alt=thumb.alt;
+      lightboxCaption.textContent=link.querySelector('figcaption').textContent;
+      lightboxCounter.textContent=`${currentPhoto+1} / ${photoLinks.length}`;
+    };
+    photoLinks.forEach((link,index)=>link.addEventListener('click',event=>{event.preventDefault();showPhoto(index);lightbox.showModal()}));
+    lightbox.querySelector('.lightbox-close').addEventListener('click',()=>lightbox.close());
+    lightbox.querySelector('.lightbox-prev').addEventListener('click',()=>showPhoto(currentPhoto-1));
+    lightbox.querySelector('.lightbox-next').addEventListener('click',()=>showPhoto(currentPhoto+1));
+    lightbox.addEventListener('click',event=>{if(event.target===lightbox)lightbox.close()});
+    lightbox.addEventListener('keydown',event=>{if(event.key==='ArrowLeft')showPhoto(currentPhoto-1);if(event.key==='ArrowRight')showPhoto(currentPhoto+1)});
+    lightboxImage.addEventListener('touchstart',event=>{touchStartX=event.changedTouches[0].clientX},{passive:true});
+    lightboxImage.addEventListener('touchend',event=>{const distance=event.changedTouches[0].clientX-touchStartX;if(Math.abs(distance)>45)showPhoto(currentPhoto+(distance<0?1:-1))},{passive:true});
+  </script>
+</body>
+</html>

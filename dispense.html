@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dispense — Les Tourneurs de la Basse Vallée</title>
+  <meta name="description" content="Dispense tecniche dedicate alla tornitura del legno: materiali utili per approfondire tecniche, lavorazioni e aspetti pratici." />
+  <style>
+    :root{
+      --bg:#f6f1ea;
+      --bg-soft:#fbf8f4;
+      --panel:rgba(255,255,255,.92);
+      --panel-solid:#ffffff;
+      --text:#201914;
+      --muted:#6d655e;
+      --line:#e7dbcf;
+      --accent:#8b5b3b;
+      --accent-dark:#6f4630;
+      --shadow:0 18px 50px rgba(28,20,15,.08);
+      --shadow-soft:0 10px 30px rgba(28,20,15,.05);
+      --radius-xl:30px;
+      --radius-lg:24px;
+      --radius-md:18px;
+      --radius-sm:14px;
+      --max:1240px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--text);
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:
+        radial-gradient(circle at top left,#fff8ef 0,transparent 28%),
+        radial-gradient(circle at top right,rgba(139,91,59,.10) 0,transparent 22%),
+        linear-gradient(180deg,#fbf8f5 0%,var(--bg) 100%);
+      line-height:1.6;
+    }
+
+    a{text-decoration:none;color:inherit}
+    img{display:block;max-width:100%}
+    .container{width:min(calc(100% - 32px),var(--max));margin:0 auto}
+    .section{padding:44px 0}
+    .surface{
+      background:var(--panel);
+      border:1px solid rgba(139,91,59,.10);
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(12px);
+      border-radius:var(--radius-lg);
+    }
+
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      background:rgba(251,248,244,.84);
+      backdrop-filter:blur(16px);
+      border-bottom:1px solid rgba(139,91,59,.08);
+    }
+
+    .nav{
+      min-height:112px;
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:18px;
+      padding-bottom:12px;
+    }
+
+    .brand{display:flex;align-items:flex-end;gap:18px;min-width:0}
+    .brand-mark{
+      width:92px;height:92px;border-radius:22px;display:grid;place-items:center;
+      background:#fff;box-shadow:0 12px 28px rgba(139,91,59,.16);padding:8px;flex:0 0 auto;
+    }
+    .brand-mark img{width:100%;height:100%;object-fit:contain;border-radius:16px}
+    .brand-text{min-width:0}
+    .brand-title{display:block;font-weight:800;letter-spacing:.01em;line-height:1.02;font-size:1.18rem}
+    .brand-sub{display:block;font-size:.9rem;color:var(--muted);margin-top:5px}
+
+    .menu{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+    .menu a{color:var(--muted);font-weight:700;font-size:.95rem}
+    .menu a:hover,.menu a.active{color:var(--text)}
+
+    .menu-toggle{
+      display:none;width:48px;height:48px;border:none;border-radius:14px;background:#fff;
+      box-shadow:var(--shadow-soft);font-size:1.2rem;cursor:pointer;
+    }
+
+    .mobile-panel{display:none;padding-bottom:14px}
+    .mobile-panel.show{display:block}
+    .mobile-menu{display:grid;gap:8px;padding:10px;background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow-soft)}
+    .mobile-menu a{padding:12px 14px;border-radius:12px;font-weight:700;color:var(--muted)}
+    .mobile-menu a:hover{background:#f8f3ed;color:var(--text)}
+
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      padding:13px 18px;border-radius:999px;border:1px solid transparent;
+      font-weight:800;transition:.2s ease;cursor:pointer;
+    }
+    .btn:hover{transform:translateY(-1px)}
+    .btn-primary{color:#fff;background:linear-gradient(135deg,var(--accent),#a26d48);box-shadow:0 12px 28px rgba(139,91,59,.22)}
+    .btn-secondary{background:#fff;border-color:var(--line);color:var(--text)}
+
+    .hero{padding:34px 0 20px}
+    .hero-wrap{display:grid;grid-template-columns:1.02fr .98fr;gap:24px;align-items:stretch}
+    .hero-copy{padding:42px;position:relative;overflow:hidden}
+    .hero-copy::after{
+      content:"";position:absolute;width:320px;height:320px;right:-140px;top:-140px;border-radius:50%;
+      background:radial-gradient(circle,rgba(139,91,59,.16),transparent 70%);pointer-events:none;
+    }
+
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:10px;padding:8px 12px;border-radius:999px;
+      font-size:.84rem;font-weight:800;letter-spacing:.02em;background:#f3e9df;color:var(--accent);margin-bottom:18px;
+    }
+
+    h1,h2,h3{margin:0;line-height:1.03;letter-spacing:-.04em}
+    h1{font-size:clamp(2.7rem,5vw,5rem);max-width:11ch}
+    h2{font-size:clamp(1.8rem,3vw,3rem)}
+    h3{font-size:1.18rem}
+    .lead{margin:18px 0 26px;color:var(--muted);font-size:1.06rem;max-width:60ch}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:26px}
+    .hero-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .meta-box{padding:16px;background:#fbf7f2;border:1px solid var(--line);border-radius:18px}
+    .meta-box strong{display:block;font-size:1.02rem;margin-bottom:4px}
+    .meta-box span{display:block;color:var(--muted);font-size:.92rem}
+
+    .hero-visual{padding:18px;display:grid;gap:16px}
+    .hero-main-image{
+      min-height:420px;border-radius:26px;overflow:hidden;position:relative;
+      background:
+        linear-gradient(180deg,rgba(16,11,8,.18),rgba(16,11,8,.42)),
+        url('assets/img/dispense/dispense-main.jpg') center/cover;
+    }
+    .hero-card-note{
+      position:absolute;left:18px;right:18px;bottom:18px;padding:18px;border-radius:18px;
+      background:rgba(255,255,255,.90);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.65);box-shadow:var(--shadow-soft);
+    }
+
+    .section-head{display:flex;justify-content:space-between;gap:20px;align-items:end;margin-bottom:22px}
+    .section-head p{margin:0;max-width:64ch;color:var(--muted)}
+
+    .cards-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+    .disp-card{padding:24px;display:flex;flex-direction:column;gap:12px}
+    .tag{display:inline-block;padding:7px 10px;border-radius:999px;background:#f3ebe3;color:var(--accent);font-size:.82rem;font-weight:800}
+    .disp-card p{margin:0;color:var(--muted);font-size:.96rem}
+    .disp-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+    .file-name{font-size:.83rem;color:var(--muted);word-break:break-all}
+
+    .cta{display:grid;grid-template-columns:1.08fr .92fr;gap:20px;padding:34px;border-radius:30px;background:linear-gradient(135deg,#241c17,#5d4737);color:#fff;box-shadow:var(--shadow)}
+    .cta p{margin:12px 0 0;color:rgba(255,255,255,.84)}
+    .cta-box{min-width:0;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:22px;padding:22px}
+    .contact-list{display:grid;gap:10px;color:rgba(255,255,255,.88)}
+    .contact-list a{overflow-wrap:anywhere;word-break:break-word}
+    .email-transition{font-size:.86rem;line-height:1.45;color:rgba(255,255,255,.70)}
+    .quick-links{display:grid;gap:8px;margin-top:16px}
+    .quick-links a{color:#fff;opacity:.92}
+    .quick-links a:hover{opacity:1}
+
+    footer{padding:0 0 56px;color:var(--muted)}
+    .footer-line{margin-top:16px;padding-top:18px;border-top:1px solid rgba(255,255,255,.12);font-size:.94rem;color:rgba(255,255,255,.72)}
+    .footer-links{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-top:10px}
+    .footer-links a{color:#fff;font-weight:750;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
+    .footer-links a:hover{color:#fff;opacity:1}
+
+    @media (max-width: 1100px){
+      .hero-wrap,.cta{grid-template-columns:1fr}
+    }
+
+    @media (max-width: 860px){
+      .menu{display:none}
+      .menu-toggle{display:inline-grid;place-items:center}
+      .hero-copy{padding:30px}
+      .hero-meta,.cards-grid{grid-template-columns:1fr}
+      .hero-main-image{min-height:300px}
+      .section-head{flex-direction:column;align-items:flex-start}
+      .brand-mark{width:70px;height:70px;margin-top:24px}
+      .nav{min-height:92px;padding-bottom:10px}
+      .brand-title{font-size:1rem}
+    }
+  </style>
+  <link rel="stylesheet" href="assets/css/modern-site.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a href="index.html" class="brand">
+        <span class="brand-mark"><img src="assets/img/brand/logo-associazione.png" alt="Logo Les Tourneurs de la Basse Vallée" /></span>
+        <span class="brand-text">
+          <span class="brand-title">Les Tourneurs de la Basse Vallée</span>
+          <span class="brand-sub">Associazione di appassionati della tornitura del legno</span>
+        </span>
+      </a>
+
+      <nav class="menu">
+        <a href="index.html">Home</a>
+        <a href="concorso.html">Concorso</a>
+        <a href="dispense.html" class="active">Dispense</a>
+        <a href="galleria.html">Galleria</a>
+        <a href="news.html">News</a>
+        <a href="index.html#contatti">Contatti</a>
+      </nav>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Apri menu">☰</button>
+    </div>
+
+    <div class="container mobile-panel" id="mobilePanel">
+      <div class="mobile-menu">
+        <a href="index.html">Home</a>
+        <a href="concorso.html">Concorso</a>
+        <a href="dispense.html">Dispense</a>
+        <a href="galleria.html">Galleria</a>
+        <a href="news.html">News</a>
+        <a href="index.html#contatti">Contatti</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-wrap">
+        <div class="surface hero-copy">
+          <div class="eyebrow">Materiale tecnico • Approfondimenti • Tornitura</div>
+          <h1>Dispense</h1>
+          <p class="lead">
+            Consulta le dispense tecniche realizzate negli anni: materiali utili per approfondire tecniche, lavorazioni e aspetti pratici della tornitura.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#elenco-dispense">Vai alle dispense</a>
+          </div>
+
+          <div class="hero-meta">
+            <div class="meta-box">
+              <strong>Argomenti pratici</strong>
+              <span>Materiali, utensili, affilatura, finitura e lavorazioni particolari.</span>
+            </div>
+            <div class="meta-box">
+              <strong>Consultazione rapida</strong>
+              <span>Ogni dispensa può essere aperta online oppure scaricata in PDF.</span>
+            </div>
+            <div class="meta-box">
+              <strong>Archivio ordinato</strong>
+              <span>Una raccolta tecnica pensata per restare semplice da consultare nel tempo.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="surface hero-visual">
+          <div class="hero-main-image">
+            <div class="hero-card-note">
+              <strong>Dispense tecniche sulla tornitura del legno</strong>
+              <div style="margin-top:6px;color:var(--muted)">
+                Una sezione dedicata ai contenuti utili dell’associazione.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="elenco-dispense">
+      <div class="container">
+        <div class="section-head">
+          <h2>Elenco dispense</h2>
+          <p>
+            Qui sotto trovi tutte le dispense attualmente realizzate.
+          </p>
+        </div>
+
+        <div class="cards-grid">
+          <article class="surface disp-card">
+            <span class="tag">Materiali</span>
+            <h3>Il legno</h3>
+            <p>Dispensa dedicata al legno come materiale di partenza, pensata per spiegare e guidare sulla schelta e l'uso delle essenze.</p>
+            <div class="disp-actions">
+              <a class="btn btn-primary" href="assets/pdf/dispense/6-LEGNO.pdf" target="_blank" rel="noopener">Apri</a>
+              <a class="btn btn-secondary" href="assets/pdf/dispense/6-LEGNO.pdf" download>Scarica</a>
+            </div>
+            <div class="file-name">6-LEGNO.pdf</div>
+          </article>
+
+          <article class="surface disp-card">
+            <span class="tag">Tecnica</span>
+            <h3>Astuzie</h3>
+            <p>Raccolta di accorgimenti pratici e piccoli trucchi utili per affrontare il lavoro al tornio con maggiore efficacia.</p>
+            <div class="disp-actions">
+              <a class="btn btn-primary" href="assets/pdf/dispense/ASTUZIE-SECONDO.pdf" target="_blank" rel="noopener">Apri</a>
+              <a class="btn btn-secondary" href="assets/pdf/dispense/ASTUZIE-SECONDO.pdf" download>Scarica</a>
+            </div>
+            <div class="file-name">ASTUZIE-SECONDO.pdf</div>
+          </article>
+
+          <article class="surface disp-card">
+            <span class="tag">Materiali</span>
+            <h3>Colle Titebond</h3>
+            <p>Articolo dedicato ai collanti titebond al loro utilizzo pratico nella lavorazione del legno.</p>
+            <div class="disp-actions">
+              <a class="btn btn-primary" href="assets/pdf/dispense/colle-titebond.pdf" target="_blank" rel="noopener">Apri</a>
+              <a class="btn btn-secondary" href="assets/pdf/dispense/colle-titebond.pdf" download>Scarica</a>
+            </div>
+            <div class="file-name">colle-titebond.pdf</div>
+          </article>
+
+          <article class="surface disp-card">
+            <span class="tag">Utensili</span>
+            <h3>Utensili speciali</h3>
+            <p>Approfondimento su utensili particolari e sui loro impieghi. Nello specifico la Plane, i Chrochets, gli utensili autocostruiti e altri.</p>
+            <div class="disp-actions">
+              <a class="btn btn-primary" href="assets/pdf/dispense/3-UTENSILI-SPECIALI.pdf" target="_blank" rel="noopener">Apri</a>
+              <a class="btn btn-secondary" href="assets/pdf/dispense/3-UTENSILI-SPECIALI.pdf" download>Scarica</a>
+            </div>
+            <div class="file-name">3-UTENSILI-SPECIALI.pdf</div>
+          </article>
+
+          <article class="surface disp-card">
+            <span class="tag">Progettazione</span>
+            <h3>Design</h3>
+            <p>Spunti e riflessioni sul rapporto tra forma, proporzione e progettazione dell’oggetto tornito. Per non fermarsi solo sulla tecnica ma spaziare sul design.</p>
+            <div class="disp-actions">
+              <a class="btn btn-primary" href="assets/pdf/dispense/quaderno-DESIGN.pdf" target="_blank" rel="noopener">Apri</a>
+              <a class="btn btn-secondary" href="assets/pdf/dispense/quaderno-DESIGN.pdf" download>Scarica</a>
+            </div>
+            <div class="file-name">quaderno-DESIGN.pdf</div>
+          </article>
+
+          <article class="surface disp-card">
+            <span class="tag">Finitura</span>
+            <h3>Finitura</h3>
+            <p>Dispensa dedicata alla finitura del legno, con attenzione ai passaggi e ai risultati estetici del lavoro finale.</p>
+            <div class="disp-actions">
+              <a class="btn btn-primary" href="assets/pdf/dispense/Quaderno-finitura.pdf" target="_blank" rel="noopener">Apri</a>
+              <a class="btn btn-secondary" href="assets/pdf/dispense/Quaderno-finitura.pdf" download>Scarica</a>
+            </div>
+            <div class="file-name">Quaderno-finitura.pdf</div>
+          </article>
+
+          <article class="surface disp-card">
+            <span class="tag">Affilatura</span>
+            <h3>Affilatura</h3>
+            <p>Approfondimento dedicato all’affilatura, fondamentale per lavorare bene e con maggiore precisione.</p>
+            <div class="disp-actions">
+              <a class="btn btn-primary" href="assets/pdf/dispense/Quaderno-su-affilatura.pdf" target="_blank" rel="noopener">Apri</a>
+              <a class="btn btn-secondary" href="assets/pdf/dispense/Quaderno-su-affilatura.pdf" download>Scarica</a>
+            </div>
+            <div class="file-name">Quaderno-su-affilatura.pdf</div>
+          </article>
+
+          <article class="surface disp-card">
+            <span class="tag">Lavorazioni particolari</span>
+            <h3>Tornitura multi-asse</h3>
+            <p>Dispensa dedicata a una lavorazione più particolare ma molto affascinante, utile per chi vuole approfondire soluzioni meno tradizionali.</p>
+            <div class="disp-actions">
+              <a class="btn btn-primary" href="assets/pdf/dispense/Quaderno-tornitura-multi-asse.pdf" target="_blank" rel="noopener">Apri</a>
+              <a class="btn btn-secondary" href="assets/pdf/dispense/Quaderno-tornitura-multi-asse.pdf" download>Scarica</a>
+            </div>
+            <div class="file-name">Quaderno-tornitura-multi-asse.pdf</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contatti">
+      <div class="container">
+        <div class="cta">
+          <div>
+            <div class="eyebrow" style="background:rgba(255,255,255,.12);color:#fff">Contatti</div>
+            <h2>Contatti e informazioni</h2>
+            <p>
+              Associazione senza scopo di lucro di artigiani, hobbisti e professionisti “LES TOURNEURS DE LA BASSE VALLÉE”.
+            </p>
+            <p>
+              Per informazioni sulle attività dell’associazione, sul concorso e sul materiale disponibile, è possibile contattarci direttamente.
+            </p>
+          </div>
+
+          <div class="cta-box">
+            <div style="font-weight:800; margin-bottom:14px; font-size:1.05rem">Associazione LES TOURNEURS DE LA BASSE VALLÉE</div>
+            <div class="contact-list">
+              <div><strong>Sede:</strong> Via Castello 12, 11026 Pont-Saint-Martin (AO)</div>
+              <div><strong>Codice fiscale:</strong> 91054370076</div>
+              <div><strong>Legale rappresentante:</strong> Ezio CAIELLI</div>
+              <div><strong>Email:</strong> <a href="mailto:tourneursvda@gmail.com">tourneursvda@gmail.com</a></div>
+              <div class="email-transition">Per le comunicazioni, utilizza questo indirizzo email.</div>
+              <div><strong>Telefono:</strong> <a href="tel:+393488128642">348 812 8642</a></div>
+              <div><strong>Facebook:</strong> <a href="https://www.facebook.com/groups/tourneurs/" target="_blank" rel="noopener noreferrer">facebook.com/groups/tourneurs</a></div>
+            </div>
+
+            <div class="footer-line">
+              Associazione dedicata alla tornitura artistica su legno.
+              <div class="footer-links" aria-label="Informazioni legali"><a href="privacy.html">Privacy</a><span aria-hidden="true">·</span><a href="disclaimer.html">Disclaimer</a><span aria-hidden="true">·</span><a href="disclaimer.html#credits">Credits</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const mobilePanel = document.getElementById('mobilePanel');
+    if (menuToggle && mobilePanel) {
+      menuToggle.addEventListener('click', () => {
+        mobilePanel.classList.toggle('show');
+      });
+      mobilePanel.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => mobilePanel.classList.remove('show'));
+      });
+    }
+  </script>
+</body>
+</html>

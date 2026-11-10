@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>News — Les Tourneurs de la Basse Vallée</title>
+  <meta name="description" content="Notizie e aggiornamenti dell'associazione Les Tourneurs de la Basse Vallée e del concorso Torni-amo il legno." />
+  <style>
+    :root{
+      --bg:#f6f1ea;
+      --panel:rgba(255,255,255,.92);
+      --text:#201914;
+      --muted:#6d655e;
+      --line:#e7dbcf;
+      --accent:#8b5b3b;
+      --shadow:0 18px 50px rgba(28,20,15,.08);
+      --shadow-soft:0 10px 30px rgba(28,20,15,.05);
+      --radius-lg:24px;
+      --max:1240px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;color:var(--text);line-height:1.6;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:
+        radial-gradient(circle at top left,#fff8ef 0,transparent 28%),
+        radial-gradient(circle at top right,rgba(139,91,59,.10) 0,transparent 22%),
+        linear-gradient(180deg,#fbf8f5 0%,var(--bg) 100%);
+    }
+
+    a{text-decoration:none;color:inherit}
+    img{display:block;max-width:100%}
+    .container{width:min(calc(100% - 32px),var(--max));margin:0 auto}
+    .section{padding:44px 0}
+    .surface{
+      background:var(--panel);border:1px solid rgba(139,91,59,.10);
+      box-shadow:var(--shadow);backdrop-filter:blur(12px);border-radius:var(--radius-lg);
+    }
+
+    .topbar{
+      position:sticky;top:0;z-index:1000;background:rgba(251,248,244,.84);
+      backdrop-filter:blur(16px);border-bottom:1px solid rgba(139,91,59,.08);
+    }
+    .nav{
+      min-height:112px;display:flex;align-items:flex-end;justify-content:space-between;
+      gap:18px;padding-bottom:12px;
+    }
+    .brand{display:flex;align-items:flex-end;gap:18px;min-width:0}
+    .brand-mark{
+      width:92px;height:92px;border-radius:22px;display:grid;place-items:center;
+      background:#fff;box-shadow:0 12px 28px rgba(139,91,59,.16);padding:8px;flex:0 0 auto;
+    }
+    .brand-mark img{width:100%;height:100%;object-fit:contain;border-radius:16px}
+    .brand-text{min-width:0}
+    .brand-title{display:block;font-weight:800;letter-spacing:.01em;line-height:1.02;font-size:1.18rem}
+    .brand-sub{display:block;font-size:.9rem;color:var(--muted);margin-top:5px}
+
+    .menu{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+    .menu a{color:var(--muted);font-weight:700;font-size:.95rem}
+    .menu a:hover,.menu a.active{color:var(--text)}
+    .menu-toggle{
+      display:none;width:48px;height:48px;border:none;border-radius:14px;background:#fff;
+      box-shadow:var(--shadow-soft);font-size:1.2rem;cursor:pointer;
+    }
+    .mobile-panel{display:none;padding-bottom:14px}
+    .mobile-panel.show{display:block}
+    .mobile-menu{display:grid;gap:8px;padding:10px;background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow-soft)}
+    .mobile-menu a{padding:12px 14px;border-radius:12px;font-weight:700;color:var(--muted)}
+    .mobile-menu a:hover{background:#f8f3ed;color:var(--text)}
+
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 20px;
+      border-radius:999px;border:1px solid transparent;font-weight:800;transition:.2s ease;
+    }
+    .btn:hover{transform:translateY(-1px)}
+    .btn-primary{color:#fff;background:linear-gradient(135deg,var(--accent),#a26d48);box-shadow:0 12px 28px rgba(139,91,59,.22)}
+    .btn-secondary{background:#fff;border-color:var(--line);color:var(--text)}
+
+    .hero{padding:34px 0 20px}
+    .hero-card{padding:42px;position:relative;overflow:hidden}
+    .hero-card::after{
+      content:"";position:absolute;width:360px;height:360px;right:-130px;top:-180px;border-radius:50%;
+      background:radial-gradient(circle,rgba(139,91,59,.18),transparent 70%);pointer-events:none;
+    }
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:10px;padding:8px 12px;border-radius:999px;
+      font-size:.84rem;font-weight:800;letter-spacing:.02em;background:#f3e9df;color:var(--accent);margin-bottom:18px;
+    }
+    h1,h2,h3{margin:0;line-height:1.03;letter-spacing:-.04em}
+    h1{font-size:clamp(2.7rem,5vw,5rem)}
+    h2{font-size:clamp(1.8rem,3vw,3rem)}
+    h3{font-size:1.35rem}
+    .lead{margin:18px 0 0;color:var(--muted);font-size:1.06rem;max-width:70ch}
+
+    .section-head{display:flex;justify-content:space-between;gap:20px;align-items:end;margin-bottom:22px}
+    .section-head p{margin:0;max-width:64ch;color:var(--muted)}
+    .news-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+    .news-dynamic{display:contents}
+    .news-card{padding:28px;display:flex;flex-direction:column;align-items:flex-start}
+    .news-card-link{display:block;width:100%;height:100%}
+    .news-cover{
+      width:calc(100% + 56px);aspect-ratio:16/10;margin:-28px -28px 22px;
+      border-radius:24px 24px 0 0;background:#f3ebe3 center/cover no-repeat;
+    }
+    .news-content{display:flex;min-height:240px;flex-direction:column;align-items:flex-start}
+    .news-content .tag{
+      display:inline-block;padding:7px 10px;border-radius:999px;background:#f3ebe3;
+      color:var(--accent);font-size:.82rem;font-weight:800;margin-bottom:10px;
+    }
+    .news-content time{font-size:.86rem;font-weight:800;color:var(--accent);margin-bottom:14px}
+    .news-content p{margin:14px 0 22px;color:var(--muted)}
+    .news-content .card-actions{margin-top:auto}
+    .news-card-image{width:calc(100% + 56px);height:220px;object-fit:cover;margin:-28px -28px 22px;border-radius:24px 24px 0 0;background:#f3ebe3}
+    .news-card-image.poster{object-position:center 28%}
+    .news-date{font-size:.86rem;font-weight:800;color:var(--accent);margin-bottom:14px}
+    .news-card p{margin:14px 0 22px;color:var(--muted)}
+    .news-card .btn{margin-top:auto}
+
+    .cta{
+      display:grid;grid-template-columns:1.08fr .92fr;gap:20px;padding:34px;border-radius:30px;
+      background:linear-gradient(135deg,#241c17,#5d4737);color:#fff;box-shadow:var(--shadow);
+    }
+    .cta p{margin:12px 0 0;color:rgba(255,255,255,.84)}
+    .cta-box{min-width:0;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:22px;padding:22px}
+    .contact-list{display:grid;gap:10px;color:rgba(255,255,255,.88)}
+    .contact-list a{overflow-wrap:anywhere;word-break:break-word}
+    .email-transition{font-size:.86rem;line-height:1.45;color:rgba(255,255,255,.70)}
+    .footer-line{margin-top:16px;padding-top:18px;border-top:1px solid rgba(255,255,255,.12);font-size:.94rem;color:rgba(255,255,255,.72)}
+    .footer-links{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-top:10px}
+    .footer-links a{color:#fff;font-weight:750;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
+    .footer-links a:hover{color:#fff;opacity:1}
+
+    @media (max-width: 860px){
+      .menu{display:none}
+      .menu-toggle{display:inline-grid;place-items:center}
+      .hero-card{padding:30px}
+      .news-grid,.cta{grid-template-columns:1fr}
+      .section-head{flex-direction:column;align-items:flex-start}
+      .brand-mark{width:70px;height:70px}
+      .nav{min-height:92px;padding-bottom:10px}
+      .brand-title{font-size:1rem}
+    }
+  </style>
+  <link rel="stylesheet" href="assets/css/modern-site.css" />
+</head>
+<body class="news-page">
+  <header class="topbar">
+    <div class="container nav">
+      <a href="index.html" class="brand">
+        <span class="brand-mark"><img src="assets/img/brand/logo-associazione.png" alt="Logo Les Tourneurs de la Basse Vallée" /></span>
+        <span class="brand-text">
+          <span class="brand-title">Les Tourneurs de la Basse Vallée</span>
+          <span class="brand-sub">Associazione di appassionati della tornitura del legno</span>
+        </span>
+      </a>
+
+      <nav class="menu">
+        <a href="index.html">Home</a>
+        <a href="concorso.html">Concorso</a>
+        <a href="dispense.html">Dispense</a>
+        <a href="galleria.html">Galleria</a>
+        <a href="news.html" class="active">News</a>
+        <a href="index.html#contatti">Contatti</a>
+      </nav>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Apri menu">☰</button>
+    </div>
+
+    <div class="container mobile-panel" id="mobilePanel">
+      <div class="mobile-menu">
+        <a href="index.html">Home</a>
+        <a href="concorso.html">Concorso</a>
+        <a href="dispense.html">Dispense</a>
+        <a href="galleria.html">Galleria</a>
+        <a href="news.html">News</a>
+        <a href="index.html#contatti">Contatti</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="surface hero-card">
+          <div class="eyebrow">Associazione • Eventi • Aggiornamenti</div>
+          <h1>News</h1>
+          <p class="lead">Comunicazioni dell’associazione, aggiornamenti sul concorso e notizie dedicate alla tornitura del legno.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Ultime notizie</h2>
+          <p>Questa sezione verrà aggiornata con le comunicazioni e gli appuntamenti dell’associazione.</p>
+        </div>
+
+        <div class="news-grid">
+          <article class="surface news-card">
+            <img class="news-card-image poster" src="assets/img/concorso/2026/2026-locandina.jpg" alt="Locandina del concorso Torni-amo il legno 2026" loading="lazy" />
+            <div class="news-date">Archivio 2026</div>
+            <h3>Torni-amo il legno 2026</h3>
+            <p>L’undicesima edizione si è svolta l’11 ottobre a Pont-Saint-Martin. Sono consultabili i documenti ufficiali del concorso; le iscrizioni sono chiuse.</p>
+            <a class="btn btn-primary" href="concorso.html#edizione-2026">Consulta l’edizione 2026</a>
+          </article>
+
+          <article class="surface news-card">
+            <img class="news-card-image" src="assets/img/galleria/generale/nuova-sede.jpg" alt="La sede operativa e i torni dell’associazione" loading="lazy" />
+            <div class="news-date">Associazione</div>
+            <h3>Attività e incontri</h3>
+            <p>Per informazioni sulle attività, gli incontri e le dimostrazioni dei Tourneurs, contatta l’associazione.</p>
+            <a class="btn btn-secondary" href="index.html#contatti">Contatta l’associazione</a>
+          </article>
+
+          <div class="news-dynamic" id="newsGrid" aria-live="polite">
+            <article class="surface news-card">
+              <div class="news-content">
+                <div class="news-date">News</div>
+                <h3>Caricamento delle notizie…</h3>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contatti">
+      <div class="container">
+        <div class="cta">
+          <div>
+            <div class="eyebrow" style="background:rgba(255,255,255,.12);color:#fff">Contatti</div>
+            <h2>Contatti e informazioni</h2>
+            <p>Per informazioni sulle attività dell’associazione, sul concorso e sulle prossime iniziative, è possibile contattarci direttamente.</p>
+          </div>
+
+          <div class="cta-box">
+            <div style="font-weight:800;margin-bottom:14px;font-size:1.05rem">Associazione LES TOURNEURS DE LA BASSE VALLÉE</div>
+            <div class="contact-list">
+              <div><strong>Sede:</strong> Via Castello 12, 11026 Pont-Saint-Martin (AO)</div>
+              <div><strong>Codice fiscale:</strong> 91054370076</div>
+              <div><strong>Legale rappresentante:</strong> Ezio CAIELLI</div>
+              <div><strong>Email:</strong> <a href="mailto:tourneursvda@gmail.com">tourneursvda@gmail.com</a></div>
+              <div class="email-transition">Per le comunicazioni, utilizza questo indirizzo email.</div>
+              <div><strong>Telefono:</strong> <a href="tel:+393488128642">348 812 8642</a></div>
+              <div><strong>Facebook:</strong> <a href="https://www.facebook.com/groups/tourneurs/" target="_blank" rel="noopener noreferrer">facebook.com/groups/tourneurs</a></div>
+            </div>
+            <div class="footer-line">Associazione dedicata alla tornitura artistica su legno.
+              <div class="footer-links" aria-label="Informazioni legali"><a href="privacy.html">Privacy</a><span aria-hidden="true">·</span><a href="disclaimer.html">Disclaimer</a><span aria-hidden="true">·</span><a href="disclaimer.html#credits">Credits</a></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const mobilePanel = document.getElementById('mobilePanel');
+    if (menuToggle && mobilePanel) {
+      menuToggle.addEventListener('click', () => {
+        mobilePanel.classList.toggle('show');
+      });
+      mobilePanel.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => mobilePanel.classList.remove('show'));
+      });
+    }
+  </script>
+  <script src="assets/js/news.js" defer></script>
+</body>
+</html>

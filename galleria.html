@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Galleria — Les Tourneurs de la Basse Vallée</title>
+  <meta name="description" content="Galleria delle attività associative e delle edizioni del concorso: momenti di convivialità, opere e immagini degli eventi." />
+  <style>
+    :root{
+      --bg:#f6f1ea;
+      --bg-soft:#fbf8f4;
+      --panel:rgba(255,255,255,.92);
+      --text:#201914;
+      --muted:#6d655e;
+      --line:#e7dbcf;
+      --accent:#8b5b3b;
+      --shadow:0 18px 50px rgba(28,20,15,.08);
+      --shadow-soft:0 10px 30px rgba(28,20,15,.05);
+      --radius-lg:24px;
+      --radius-md:18px;
+      --max:1240px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--text);
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:
+        radial-gradient(circle at top left,#fff8ef 0,transparent 28%),
+        radial-gradient(circle at top right,rgba(139,91,59,.10) 0,transparent 22%),
+        linear-gradient(180deg,#fbf8f5 0%,var(--bg) 100%);
+      line-height:1.6;
+    }
+
+    a{text-decoration:none;color:inherit}
+    img{display:block;max-width:100%}
+    .container{width:min(calc(100% - 32px),var(--max));margin:0 auto}
+    .section{padding:44px 0}
+    .surface{
+      background:var(--panel);
+      border:1px solid rgba(139,91,59,.10);
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(12px);
+      border-radius:var(--radius-lg);
+    }
+
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      background:rgba(251,248,244,.84);
+      backdrop-filter:blur(16px);
+      border-bottom:1px solid rgba(139,91,59,.08);
+    }
+
+    .nav{
+      min-height:112px;
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:18px;
+      padding-bottom:12px;
+    }
+
+    .brand{display:flex;align-items:flex-end;gap:18px;min-width:0}
+    .brand-mark{
+      width:92px;height:92px;border-radius:22px;display:grid;place-items:center;
+      background:#fff;box-shadow:0 12px 28px rgba(139,91,59,.16);padding:8px;flex:0 0 auto;
+    }
+    .brand-mark img{width:100%;height:100%;object-fit:contain;border-radius:16px}
+    .brand-text{min-width:0}
+    .brand-title{display:block;font-weight:800;letter-spacing:.01em;line-height:1.02;font-size:1.18rem}
+    .brand-sub{display:block;font-size:.9rem;color:var(--muted);margin-top:5px}
+
+    .menu{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+    .menu a{color:var(--muted);font-weight:700;font-size:.95rem}
+    .menu a:hover,.menu a.active{color:var(--text)}
+
+    .menu-toggle{
+      display:none;width:48px;height:48px;border:none;border-radius:14px;background:#fff;
+      box-shadow:var(--shadow-soft);font-size:1.2rem;cursor:pointer;
+    }
+
+    .mobile-panel{display:none;padding-bottom:14px}
+    .mobile-panel.show{display:block}
+    .mobile-menu{display:grid;gap:8px;padding:10px;background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow-soft)}
+    .mobile-menu a{padding:12px 14px;border-radius:12px;font-weight:700;color:var(--muted)}
+    .mobile-menu a:hover{background:#f8f3ed;color:var(--text)}
+
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      padding:13px 18px;border-radius:999px;border:1px solid transparent;
+      font-weight:800;transition:.2s ease;cursor:pointer;
+    }
+    .btn:hover{transform:translateY(-1px)}
+    .btn-primary{color:#fff;background:linear-gradient(135deg,var(--accent),#a26d48);box-shadow:0 12px 28px rgba(139,91,59,.22)}
+    .btn-secondary{background:#fff;border-color:var(--line);color:var(--text)}
+
+    .hero{padding:34px 0 20px}
+    .hero-wrap{display:grid;grid-template-columns:1.02fr .98fr;gap:24px;align-items:start}
+    .hero-copy{padding:42px;position:relative;overflow:hidden}
+    .hero-copy::after{
+      content:"";position:absolute;width:320px;height:320px;right:-140px;top:-140px;border-radius:50%;
+      background:radial-gradient(circle,rgba(139,91,59,.16),transparent 70%);pointer-events:none;
+    }
+
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:10px;padding:8px 12px;border-radius:999px;
+      font-size:.84rem;font-weight:800;letter-spacing:.02em;background:#f3e9df;color:var(--accent);margin-bottom:18px;
+    }
+
+    h1,h2,h3{margin:0;line-height:1.03;letter-spacing:-.04em}
+    h1{font-size:clamp(2.7rem,5vw,5rem);max-width:10ch}
+    h2{font-size:clamp(1.8rem,3vw,3rem)}
+    h3{font-size:1.18rem}
+    .lead{margin:18px 0 26px;color:var(--muted);font-size:1.06rem;max-width:60ch}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px}
+
+    .hero-visual{padding:18px;display:grid;align-self:start}
+    .hero-main-image{
+      aspect-ratio:16 / 9;
+      border-radius:26px;overflow:hidden;position:relative;
+      background:
+        linear-gradient(180deg,rgba(16,11,8,.18),rgba(16,11,8,.42)),
+        url('assets/img/repertorio/xilexpo-2016-area-dimostrazioni.jpg') center/cover;
+    }
+    .hero-card-note{
+      position:absolute;left:18px;right:18px;bottom:18px;padding:18px;border-radius:18px;
+      background:rgba(255,255,255,.90);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.65);box-shadow:var(--shadow-soft);
+    }
+
+    .section-head{display:flex;justify-content:space-between;gap:20px;align-items:end;margin-bottom:22px}
+    .section-head p{margin:0;max-width:64ch;color:var(--muted)}
+
+    .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .gallery-grid-featured{grid-template-columns:repeat(2,1fr)}
+    .collection-heading{margin-top:54px}
+    .gallery-card{
+      overflow:hidden;
+      transition:.2s ease;
+    }
+    .gallery-card:hover{transform:translateY(-2px)}
+    .gallery-card-link{display:block;height:100%}
+    .gallery-cover{
+      aspect-ratio:16 / 10;
+      border-radius:24px 24px 0 0;
+      background-size:cover;
+      background-position:center;
+      background-repeat:no-repeat;
+    }
+    .cover-generale{background-image:url('assets/img/galleria/generale/magliette-rosse.jpg')}
+    .cover-archivio{background-image:url('assets/img/archivio/2007/antey-agosto-2007/antey-agosto-2007-003.jpg')}
+    .cover-2019{background-image:url('assets/img/concorso/2019/servizio-da-te.jpg')}
+    .cover-2018{background-image:url('assets/img/concorso/2018/06166ed40484cd42.jpg')}
+    .cover-2017{background-image:url('assets/img/concorso/2017/01bd3bede89ecfd1.jpg')}
+    .cover-2023{background-image:url('assets/img/concorso/2023/013bc6e8c687367a.jpg')}
+    .cover-2022{background-image:url('assets/img/concorso/2022/tornitura/opera-3.jpg')}
+    .cover-2015{background-image:url('assets/img/concorso/2015/galleria/foto-015.jpg')}
+    .cover-2014{background-image:url('assets/img/concorso/2014/galleria/foto-001.jpg')}
+    .cover-2025{background-image:url('assets/img/concorso/2025/evento-002.jpg')}
+    .cover-2024{background-image:url('assets/img/concorso/2024/foto-011.jpg')}
+    .cover-2016{background-image:url('assets/img/concorso/2016/foto-003.jpg')}
+    .cover-pending{position:relative;background:linear-gradient(135deg,#eadfd4,#cdb7a2)}
+    .cover-pending::after{content:'Album da completare';position:absolute;inset:0;display:grid;place-items:center;padding:24px;color:var(--accent);font-weight:900;font-size:1.15rem;text-align:center}
+
+    .gallery-content{padding:22px}
+    .tag{display:inline-block;padding:7px 10px;border-radius:999px;background:#f3ebe3;color:var(--accent);font-size:.82rem;font-weight:800;margin-bottom:14px}
+    .gallery-content p{margin:10px 0 0;color:var(--muted);font-size:.96rem}
+    .card-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+
+    .cta{display:grid;grid-template-columns:1.08fr .92fr;gap:20px;padding:34px;border-radius:30px;background:linear-gradient(135deg,#241c17,#5d4737);color:#fff;box-shadow:var(--shadow)}
+    .cta p{margin:12px 0 0;color:rgba(255,255,255,.84)}
+    .cta-box{min-width:0;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:22px;padding:22px}
+    .contact-list{display:grid;gap:10px;color:rgba(255,255,255,.88)}
+    .contact-list a{overflow-wrap:anywhere;word-break:break-word}
+    .email-transition{font-size:.86rem;line-height:1.45;color:rgba(255,255,255,.70)}
+
+    footer{padding:0 0 56px;color:var(--muted)}
+    .footer-line{margin-top:16px;padding-top:18px;border-top:1px solid rgba(255,255,255,.12);font-size:.94rem;color:rgba(255,255,255,.72)}
+    .footer-links{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-top:10px}
+    .footer-links a{color:#fff;font-weight:750;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
+    .footer-links a:hover{color:#fff;opacity:1}
+
+    @media (max-width: 1100px){
+      .hero-wrap,.cta{grid-template-columns:1fr}
+      .gallery-grid{grid-template-columns:1fr 1fr}
+    }
+
+    @media (max-width: 860px){
+      .menu{display:none}
+      .menu-toggle{display:inline-grid;place-items:center}
+      .hero-copy{padding:30px}
+      .hero-main-image{aspect-ratio:auto;min-height:260px;display:flex;align-items:flex-end;padding:18px}
+      .hero-card-note{position:relative;left:auto;right:auto;bottom:auto;width:100%}
+      .gallery-grid{grid-template-columns:1fr}
+      .section-head{flex-direction:column;align-items:flex-start}
+      .brand-mark{width:70px;height:70px;margin-top:24px}
+      .nav{min-height:92px;padding-bottom:10px}
+      .brand-title{font-size:1rem}
+    }
+  </style>
+  <link rel="stylesheet" href="assets/css/modern-site.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a href="index.html" class="brand">
+        <span class="brand-mark"><img src="assets/img/brand/logo-associazione.png" alt="Logo Les Tourneurs de la Basse Vallée" /></span>
+        <span class="brand-text">
+          <span class="brand-title">Les Tourneurs de la Basse Vallée</span>
+          <span class="brand-sub">Associazione di appassionati della tornitura del legno</span>
+        </span>
+      </a>
+
+      <nav class="menu">
+        <a href="index.html">Home</a>
+        <a href="concorso.html">Concorso</a>
+        <a href="dispense.html">Dispense</a>
+        <a href="galleria.html" class="active">Galleria</a>
+        <a href="news.html">News</a>
+        <a href="index.html#contatti">Contatti</a>
+      </nav>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Apri menu">☰</button>
+    </div>
+
+    <div class="container mobile-panel" id="mobilePanel">
+      <div class="mobile-menu">
+        <a href="index.html">Home</a>
+        <a href="concorso.html">Concorso</a>
+        <a href="dispense.html">Dispense</a>
+        <a href="galleria.html">Galleria</a>
+        <a href="news.html">News</a>
+        <a href="index.html#contatti">Contatti</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-wrap">
+        <div class="surface hero-copy">
+          <div class="eyebrow">Galleria • Momenti • Edizioni</div>
+          <h1>Galleria</h1>
+          <p class="lead">
+            Scopri la vita dell’associazione attraverso le immagini degli incontri, delle dimostrazioni, delle fiere e delle diverse edizioni del concorso “Torni-amo il legno”.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#raccolte">Apri le raccolte</a>
+            <a class="btn btn-secondary" href="concorso.html">Vai al concorso</a>
+          </div>
+        </div>
+
+        <div class="surface hero-visual">
+          <div class="hero-main-image" role="img" aria-label="Area delle dimostrazioni di tornitura a Xilexpo 2016">
+            <div class="hero-card-note">
+              <strong>Immagini dell’associazione e delle edizioni del concorso</strong>
+              <div style="margin-top:6px;color:var(--muted)">
+                Entra nelle raccolte e rivivi con noi gli eventi, le lavorazioni e i momenti trascorsi insieme.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="raccolte">
+      <div class="container">
+        <div class="section-head">
+          <h2>Gallerie dell’associazione</h2>
+          <p>
+            Incontri, dimostrazioni, fiere e immagini che raccontano la storia dell’associazione.
+          </p>
+        </div>
+
+        <div class="gallery-grid gallery-grid-featured">
+          <article class="surface gallery-card">
+            <a class="gallery-card-link" href="galleria-generale.html">
+              <div class="gallery-cover cover-generale"></div>
+              <div class="gallery-content">
+                <span class="tag">Vita associativa</span>
+                <h3>Momenti associativi</h3>
+                <p>Incontri, fiere, dimostrazioni e giornate condivise dai soci e dagli amici dell’associazione.</p>
+                <div class="card-actions">
+                  <span class="btn btn-primary">Apri galleria</span>
+                </div>
+              </div>
+            </a>
+          </article>
+
+          <article class="surface gallery-card">
+            <a class="gallery-card-link" href="archivio-storico.html">
+              <div class="gallery-cover cover-archivio"></div>
+              <div class="gallery-content">
+                <span class="tag">Dal 2007</span>
+                <h3>Archivio storico</h3>
+                <p>Eventi, fiere e momenti che raccontano la storia dell’associazione attraverso le fotografie del vecchio sito.</p>
+                <div class="card-actions">
+                  <span class="btn btn-primary">Esplora l’archivio</span>
+                </div>
+              </div>
+            </a>
+          </article>
+
+        </div>
+
+        <div class="section-head collection-heading">
+          <h2>Album del concorso</h2>
+          <p>
+            Le edizioni di “Torni-amo il legno” sono ordinate dalla più recente alla prima. Gli anni 2020 e 2021 non sono presenti perché il concorso non si è svolto.
+          </p>
+        </div>
+
+        <div class="gallery-grid">
+
+          <article class="surface gallery-card">
+            <a class="gallery-card-link" href="concorso-2025.html#galleria">
+              <div class="gallery-cover cover-2025"></div>
+              <div class="gallery-content">
+                <span class="tag">10ª edizione · 2025</span>
+                <h3>Torni-amo il legno — 10ª edizione</h3>
+                <p>Le opere meglio classificate e le pagine della classifica ufficiale del concorso 2025.</p>
+                <div class="card-actions">
+                  <span class="btn btn-primary">Apri raccolta</span>
+                </div>
+              </div>
+            </a>
+          </article>
+
+          <article class="surface gallery-card">
+            <a class="gallery-card-link" href="concorso-2024.html#galleria">
+              <div class="gallery-cover cover-2024"></div>
+              <div class="gallery-content">
+                <span class="tag">9ª edizione · 2024</span>
+                <h3>Torni-amo il legno — 9ª edizione</h3>
+                <p>Fotografie dell’esposizione e delle quattro categorie in concorso.</p>
+                <div class="card-actions">
+                  <span class="btn btn-secondary">Apri album</span>
+                </div>
+              </div>
+            </a>
+          </article>
+
+          <article class="surface gallery-card">
+            <a class="gallery-card-link" href="concorso-2023.html#galleria">
+              <div class="gallery-cover cover-2023"></div>
+              <div class="gallery-content"><span class="tag">8ª edizione · 2023</span><h3>Torni-amo il legno — 8ª edizione</h3><p>Le opere partecipanti, i lavori classificati e le classifiche dell’edizione 2023.</p><div class="card-actions"><span class="btn btn-primary">Apri raccolta</span></div></div>
+            </a>
+          </article>
+
+          <article class="surface gallery-card">
+            <a class="gallery-card-link" href="concorso-2022.html#galleria">
+              <div class="gallery-cover cover-2022"></div>
+              <div class="gallery-content"><span class="tag">7ª edizione · 2022</span><h3>Torni-amo il legno — 7ª edizione</h3><p>Le raccolte delle categorie Solo tornitura, Artistico e Penne, con le classifiche dell’edizione.</p><div class="card-actions"><span class="btn btn-primary">Apri raccolta</span></div></div>
+            </a>
+          </article>
+
+          <article class="surface gallery-card">
+            <a class="gallery-card-link" href="concorso-2019.html#galleria">
+              <div class="gallery-cover cover-2019"></div>
+              <div class="gallery-content">
+                <span class="tag">6ª edizione · 2019</span>
+                <h3>Torni-amo il legno — 6ª edizione</h3>
+                <p>Le opere premiate e la classifica completa della sesta edizione di Torni-amo il legno.</p>
+                <div class="card-actions"><span class="btn btn-primary">Apri raccolta</span></div>
+              </div>
+            </a>
+          </article>
+
+          <article class="surface gallery-card">
+            <a class="gallery-card-link" href="concorso-2018.html#galleria">
+              <div class="gallery-cover cover-2018"></div>
+              <div class="gallery-content"><span class="tag">5ª edizione · 2018</span><h3>Torni-amo il legno — 5ª edizione</h3><p>Una selezione rappresentativa dall’album ufficiale della quinta edizione.</p><div class="card-actions"><span class="btn btn-primary">Apri raccolta</span></div></div>
+            </a>
+          </article>
+
+          <article class="surface gallery-card">
+            <a class="gallery-card-link" href="concorso-2017.html#galleria">
+              <div class="gallery-cover cover-2017"></div>
+              <div class="gallery-content"><span class="tag">4ª edizione · 2017</span><h3>Torni-amo il legno — 4ª edizione</h3><p>Le opere in concorso recuperate dall’album ufficiale del 2017.</p><div class="card-actions"><span class="btn btn-primary">Apri raccolta</span></div></div>
+            </a>
+          </article>
+
+          <article class="surface gallery-card">
+            <a class="gallery-card-link" href="concorso-2016.html#galleria">
+              <div class="gallery-cover cover-2016" role="img" aria-label="Album dell’edizione 2016"></div>
+              <div class="gallery-content">
+                <span class="tag">3ª edizione · 2016</span>
+                <h3>Torni-amo il legno — 3ª edizione</h3>
+                <p>29 fotografie tra opere, dimostrazioni, pubblico e premiazione.</p>
+                <div class="card-actions"><span class="btn btn-secondary">Apri album</span></div>
+              </div>
+            </a>
+          </article>
+
+          <article class="surface gallery-card">
+            <a class="gallery-card-link" href="concorso-2015.html#galleria">
+              <div class="gallery-cover cover-2015"></div><div class="gallery-content"><span class="tag">2ª edizione · 2015</span><h3>Torni-amo il legno — 2ª edizione</h3><p>La festa, le dimostrazioni, le opere e i momenti della seconda edizione.</p><div class="card-actions"><span class="btn btn-primary">Apri raccolta</span></div></div>
+            </a>
+          </article>
+
+          <article class="surface gallery-card">
+            <a class="gallery-card-link" href="concorso-2014.html#galleria">
+              <div class="gallery-cover cover-2014"></div><div class="gallery-content"><span class="tag">1ª edizione · 2014</span><h3>Torni-amo il legno — 1ª edizione</h3><p>Le opere e i protagonisti della prima mostra-concorso di Pont-Saint-Martin.</p><div class="card-actions"><span class="btn btn-primary">Apri raccolta</span></div></div>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contatti">
+      <div class="container">
+        <div class="cta">
+          <div>
+            <div class="eyebrow" style="background:rgba(255,255,255,.12);color:#fff">Contatti</div>
+            <h2>Contatti e informazioni</h2>
+            <p>
+              Associazione senza scopo di lucro di artigiani, hobbisti e professionisti “LES TOURNEURS DE LA BASSE VALLÉE”.
+            </p>
+            <p>
+              Per informazioni sulle attività dell’associazione, sul concorso e sul materiale disponibile, è possibile contattarci direttamente.
+            </p>
+          </div>
+
+          <div class="cta-box">
+            <div style="font-weight:800; margin-bottom:14px; font-size:1.05rem">Associazione LES TOURNEURS DE LA BASSE VALLÉE</div>
+            <div class="contact-list">
+              <div><strong>Sede:</strong> Via Castello 12, 11026 Pont-Saint-Martin (AO)</div>
+              <div><strong>Codice fiscale:</strong> 91054370076</div>
+              <div><strong>Legale rappresentante:</strong> Ezio CAIELLI</div>
+              <div><strong>Email:</strong> <a href="mailto:tourneursvda@gmail.com">tourneursvda@gmail.com</a></div>
+              <div class="email-transition">Per le comunicazioni, utilizza questo indirizzo email.</div>
+              <div><strong>Telefono:</strong> <a href="tel:+393488128642">348 812 8642</a></div>
+              <div><strong>Facebook:</strong> <a href="https://www.facebook.com/groups/tourneurs/" target="_blank" rel="noopener noreferrer">facebook.com/groups/tourneurs</a></div>
+            </div>
+
+            <div class="footer-line">
+              Associazione dedicata alla tornitura artistica su legno.
+              <div class="footer-links" aria-label="Informazioni legali"><a href="privacy.html">Privacy</a><span aria-hidden="true">·</span><a href="disclaimer.html">Disclaimer</a><span aria-hidden="true">·</span><a href="disclaimer.html#credits">Credits</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const mobilePanel = document.getElementById('mobilePanel');
+    if (menuToggle && mobilePanel) {
+      menuToggle.addEventListener('click', () => {
+        mobilePanel.classList.toggle('show');
+      });
+      mobilePanel.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => mobilePanel.classList.remove('show'));
+      });
+    }
+  </script>
+</body>
+</html>

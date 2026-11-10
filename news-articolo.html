@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>News — Les Tourneurs de la Basse Vallée</title>
+  <meta name="description" content="News e aggiornamenti dell’associazione Les Tourneurs de la Basse Vallée." />
+  <link rel="icon" href="assets/img/brand/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" href="assets/img/brand/favicon.png" />
+  <link rel="apple-touch-icon" href="assets/img/brand/favicon.png" />
+  <meta property="og:type" content="article" />
+  <meta property="og:locale" content="it_IT" />
+  <meta property="og:site_name" content="Les Tourneurs de la Basse Vallée" />
+  <meta property="og:title" content="News — Les Tourneurs de la Basse Vallée" />
+  <meta property="og:description" content="News e aggiornamenti dell’associazione." />
+  <meta property="og:image" content="https://tourneurs.it/assets/img/brand/anteprima-social.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Logo Les Tourneurs de la Basse Vallée su uno sfondo dedicato alla tornitura del legno" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body class="news-article" data-news-view="article">
+  <header class="topbar">
+    <div class="container nav">
+      <a href="index.html" class="brand" aria-label="Les Tourneurs de la Basse Vallée — Home">
+        <span class="brand-mark"><img src="assets/img/brand/logo-associazione.png" alt="Logo Les Tourneurs de la Basse Vallée" /></span>
+        <span class="brand-text">
+          <span class="brand-title">Les Tourneurs de la Basse Vallée</span>
+          <span class="brand-sub">Associazione di appassionati della tornitura del legno</span>
+        </span>
+      </a>
+
+      <nav class="menu" aria-label="Navigazione principale">
+        <a href="index.html">Home</a>
+        <a href="concorso.html">Concorso</a>
+        <a href="dispense.html">Dispense</a>
+        <a href="galleria.html">Galleria</a>
+        <a href="news.html" class="active">News</a>
+        <a href="index.html#contatti">Contatti</a>
+      </nav>
+
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Apri menu" aria-controls="mobilePanel" aria-expanded="false">☰</button>
+    </div>
+
+    <div class="container mobile-panel" id="mobilePanel">
+      <nav class="mobile-menu" aria-label="Navigazione mobile">
+        <a href="index.html">Home</a>
+        <a href="concorso.html">Concorso</a>
+        <a href="dispense.html">Dispense</a>
+        <a href="galleria.html">Galleria</a>
+        <a href="news.html">News</a>
+        <a href="index.html#contatti">Contatti</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="surface hero-copy">
+          <span class="tag" id="articleCategory">News</span>
+          <h1 id="articleTitle">Caricamento articolo…</h1>
+          <p class="lead" id="articleSummary">Attendere qualche istante.</p>
+          <time class="news-date" id="articleDate"></time>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container article-container">
+        <div class="article-cover" id="articleCover" role="img" aria-label="Dimostrazione di lavorazione del legno" style="background-image:url('assets/img/galleria/generale/plane.jpg')"></div>
+        <div class="article-content" id="articleContent" aria-live="polite"></div>
+
+        <div class="hero-actions">
+          <a class="btn btn-secondary" href="news.html">Torna alle news</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contatti">
+      <div class="container">
+        <div class="cta">
+          <div>
+            <div class="eyebrow" style="background:rgba(255,255,255,.12);color:#fff">Contatti</div>
+            <h2>Contatti e informazioni</h2>
+            <p>Associazione senza scopo di lucro di artigiani, hobbisti e professionisti “LES TOURNEURS DE LA BASSE VALLÉE”.</p>
+          </div>
+
+          <div class="cta-box">
+            <div style="font-weight:800; margin-bottom:14px; font-size:1.05rem">Associazione LES TOURNEURS DE LA BASSE VALLÉE</div>
+            <div class="contact-list">
+              <div><strong>Sede:</strong> Via Castello 12, 11026 Pont-Saint-Martin (AO)</div>
+              <div><strong>Codice fiscale:</strong> 91054370076</div>
+              <div><strong>Legale rappresentante:</strong> Ezio CAIELLI</div>
+              <div><strong>Email:</strong> <a href="mailto:tourneursvda@gmail.com">tourneursvda@gmail.com</a></div>
+              <div class="email-transition">Per le comunicazioni, utilizza questo indirizzo email.</div>
+              <div><strong>Telefono:</strong> <a href="tel:+393488128642">348 812 8642</a></div>
+              <div><strong>Facebook:</strong> <a href="https://www.facebook.com/groups/tourneurs/" target="_blank" rel="noopener noreferrer">facebook.com/groups/tourneurs</a></div>
+            </div>
+
+            <div class="footer-line">Associazione dedicata alla tornitura artistica su legno.
+              <div class="footer-links" aria-label="Informazioni legali"><a href="privacy.html">Privacy</a><span aria-hidden="true">·</span><a href="disclaimer.html">Disclaimer</a><span aria-hidden="true">·</span><a href="disclaimer.html#credits">Credits</a></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const mobilePanel = document.getElementById('mobilePanel');
+    if (menuToggle && mobilePanel) {
+      const setMenuState = (open) => {
+        mobilePanel.classList.toggle('show', open);
+        menuToggle.setAttribute('aria-expanded', String(open));
+        menuToggle.setAttribute('aria-label', open ? 'Chiudi menu' : 'Apri menu');
+      };
+      menuToggle.addEventListener('click', () => {
+        setMenuState(!mobilePanel.classList.contains('show'));
+      });
+      mobilePanel.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => setMenuState(false));
+      });
+      document.addEventListener('keydown', event => {
+        if (event.key === 'Escape') setMenuState(false);
+      });
+    }
+  </script>
+  <script src="assets/js/news.js" defer></script>
+</body>
+</html>

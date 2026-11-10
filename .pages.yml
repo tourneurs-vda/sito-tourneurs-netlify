@@ -1,0 +1,82 @@
+media:
+  input: assets/img/news
+  output: /assets/img/news
+  rename: safe
+  categories: [image]
+
+content:
+  - name: news
+    label: News
+    type: file
+    path: content/news.json
+    format: json
+    fields:
+      - name: articles
+        label: Articoli
+        type: object
+        required: true
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{date} — {title}"
+        fields:
+          - name: published
+            label: Pubblicato
+            type: boolean
+            default: true
+            description: Disattiva per nascondere temporaneamente l'articolo.
+          - name: slug
+            label: Identificativo
+            type: string
+            required: true
+            pattern:
+              regex: "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+              message: Usa solo lettere minuscole, numeri e trattini.
+            description: "Esempio: giornata-associativa-2026. Non cambiarlo dopo la pubblicazione."
+          - name: title
+            label: Titolo
+            type: string
+            required: true
+          - name: date
+            label: Data
+            type: date
+            required: true
+            options:
+              time: false
+              format: yyyy-MM-dd
+          - name: category
+            label: Categoria
+            type: select
+            required: true
+            default: Associazione
+            options:
+              values:
+                - Concorso
+                - Associazione
+                - Evento
+                - Comunicazione
+          - name: summary
+            label: Riassunto
+            type: text
+            required: true
+            description: Una o due frasi mostrate nella Home e nell'elenco delle news.
+          - name: cover
+            label: Immagine di copertina
+            type: image
+            required: false
+            options:
+              extensions: [jpg, jpeg, png, webp]
+              rename: safe
+          - name: cover_alt
+            label: Descrizione dell'immagine
+            type: string
+            required: false
+            description: Breve descrizione utile a chi non può vedere l'immagine.
+          - name: body
+            label: Testo dell'articolo
+            type: rich-text
+            required: true
+            options:
+              format: markdown
+              switcher: false
+              media: false
