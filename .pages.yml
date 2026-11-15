@@ -28,7 +28,7 @@ content:
             collapsed: true
             summary: "{date} — {title} — {author}"
         fields:
-         - name: author
+          - name: author
             label: Autore (uso interno)
             type: select
             required: false
