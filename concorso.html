@@ -563,18 +563,6 @@
     </section>
   </main>
 
-  <script>
-    const menuToggle = document.getElementById('menuToggle');
-    const mobilePanel = document.getElementById('mobilePanel');
-    if (menuToggle && mobilePanel) {
-      menuToggle.addEventListener('click', () => {
-        mobilePanel.classList.toggle('show');
-      });
-      mobilePanel.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => mobilePanel.classList.remove('show'));
-      });
-    }
-  </script>
 <script src="assets/js/menu-mobile.js"></script>
 </body>
 </html>
