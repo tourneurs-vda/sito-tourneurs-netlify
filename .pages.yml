@@ -1,3 +1,11 @@
+settings:
+  commit:
+    identity: user
+    templates:
+      create: "Creazione contenuto da {userName}: {path}"
+      update: "Aggiornamento contenuto da {userName}: {path}"
+      delete: "Eliminazione contenuto da {userName}: {path}"
+      
 media:
   input: assets/img/news
   output: /assets/img/news
