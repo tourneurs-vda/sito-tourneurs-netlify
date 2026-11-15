@@ -1,6 +1,10 @@
 <IfModule mod_rewrite.c>
 RewriteEngine On
 
+# Reindirizza www al dominio principale
+RewriteCond %{HTTP_HOST} ^www\.tourneurs\.it$ [NC]
+RewriteRule ^(.*)$ https://tourneurs.it/$1 [R=301,L]
+
 RewriteCond %{THE_REQUEST} \s/+index\.html(?:[?\s]) [NC]
 RewriteRule ^index\.html$ / [R=302,L]
 
