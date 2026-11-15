@@ -31,6 +31,7 @@
     @media(max-width:860px){.privacy-hero-card{padding:32px}.privacy-layout{grid-template-columns:1fr}.privacy-side{position:static}.privacy-content{padding:26px}}
     @media(max-width:520px){.privacy-hero{padding-top:24px}.privacy-hero-card,.privacy-content,.privacy-side{padding:22px}.privacy-block{padding-bottom:22px;margin-bottom:22px}}
   </style>
+<link rel="stylesheet" href="assets/css/mobile-restyling.css">
 </head>
 <body class="privacy-page">
   <header class="topbar">
@@ -114,5 +115,6 @@
     </section>
   </main>
   <script>const menuToggle=document.getElementById('menuToggle');const mobilePanel=document.getElementById('mobilePanel');if(menuToggle&&mobilePanel){const setMenuState=open=>{mobilePanel.classList.toggle('show',open);menuToggle.setAttribute('aria-expanded',String(open));menuToggle.setAttribute('aria-label',open?'Chiudi menu':'Apri menu')};menuToggle.addEventListener('click',()=>setMenuState(!mobilePanel.classList.contains('show')));mobilePanel.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>setMenuState(false)));document.addEventListener('keydown',event=>{if(event.key==='Escape')setMenuState(false)})}</script>
+<script src="assets/js/menu-mobile.js"></script>
 </body>
 </html>

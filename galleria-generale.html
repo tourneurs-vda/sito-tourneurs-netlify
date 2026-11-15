@@ -42,6 +42,7 @@
     @media(max-width:580px){.gallery-intro{padding:26px}.photo-grid{grid-template-columns:1fr}.photo-card img{aspect-ratio:4/3}.lightbox{width:calc(100% - 20px);border-radius:17px}.lightbox-image{max-height:62vh}.lightbox-caption{padding:14px 58px;font-size:.94rem}.lightbox-arrow{width:42px;height:56px}.lightbox-prev{left:8px}.lightbox-next{right:8px}.lightbox-close{top:8px;right:8px}}
     @media(prefers-reduced-motion:reduce){.photo-card img{transition:none}}
   </style>
+<link rel="stylesheet" href="assets/css/mobile-restyling.css">
 </head>
 <body>
   <header class="topbar">
@@ -115,5 +116,6 @@
     lightboxImage.addEventListener('touchstart',event=>{touchStartX=event.changedTouches[0].clientX},{passive:true});
     lightboxImage.addEventListener('touchend',event=>{const distance=event.changedTouches[0].clientX-touchStartX;if(Math.abs(distance)>45)showPhoto(currentPhoto+(distance<0?1:-1))},{passive:true});
   </script>
+<script src="assets/js/menu-mobile.js"></script>
 </body>
 </html>

@@ -33,6 +33,7 @@
     @media(max-width:860px){.legal-hero-card{padding:32px}.legal-layout{grid-template-columns:1fr}.legal-side{position:static}.legal-content{padding:26px}}
     @media(max-width:520px){.legal-hero{padding-top:24px}.legal-hero-card,.legal-content,.legal-side{padding:22px}.legal-block{padding-bottom:22px;margin-bottom:22px}}
   </style>
+<link rel="stylesheet" href="assets/css/mobile-restyling.css">
 </head>
 <body>
   <header class="topbar">
@@ -118,5 +119,6 @@
   </main>
 
 <script>const menuToggle=document.getElementById('menuToggle');const mobilePanel=document.getElementById('mobilePanel');if(menuToggle&&mobilePanel){const setMenuState=open=>{mobilePanel.classList.toggle('show',open);menuToggle.setAttribute('aria-expanded',String(open));menuToggle.setAttribute('aria-label',open?'Chiudi menu':'Apri menu')};menuToggle.addEventListener('click',()=>setMenuState(!mobilePanel.classList.contains('show')));mobilePanel.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>setMenuState(false)));document.addEventListener('keydown',event=>{if(event.key==='Escape')setMenuState(false)})}</script>
+<script src="assets/js/menu-mobile.js"></script>
 </body>
 </html>
