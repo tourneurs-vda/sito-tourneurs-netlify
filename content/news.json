@@ -14,7 +14,7 @@
     },
     {
       "author": "Emil",
-      "published": false,
+      "published": true,
       "slug": "newsite",
       "title": "Nuovo sito web",
       "date": "2026-11-15",
