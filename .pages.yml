@@ -1,3 +1,11 @@
+settings:
+  commit:
+    identity: user
+    templates:
+      create: "Creazione contenuto da {userName}: {path}"
+      update: "Aggiornamento contenuto da {userName}: {path}"
+      delete: "Eliminazione contenuto da {userName}: {path}"
+      
 media:
   input: assets/img/news
   output: /assets/img/news
@@ -18,8 +26,18 @@ content:
         list:
           collapsible:
             collapsed: true
-            summary: "{date} — {title}"
+            summary: "{date} — {title} — {author}"
         fields:
+          - name: author
+            label: Autore (uso interno)
+            type: select
+            required: false
+            description: Identifica il socio che ha scritto l'articolo. Non viene mostrato sul sito.
+            options:
+              values:
+                - Emil
+                - Ezio
+                - Andrea
           - name: published
             label: Pubblicato
             type: boolean
