@@ -288,3 +288,38 @@
 }
 
 
+/* Uniformità grafica delle edizioni del concorso */
+@media (min-width: 801px) {
+  .edition-hero {
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+  }
+
+  .edition-cover {
+    min-height: 430px;
+  }
+}
+
+.edition-copy,
+.edition-cover {
+  border-radius: 24px;
+}
+
+.edition-cover {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+@media (max-width: 800px) {
+  .edition-cover {
+    min-height: 280px;
+    border-radius: 20px;
+  }
+
+  .edition-copy {
+    border-radius: 20px;
+  }
+}
+
+
