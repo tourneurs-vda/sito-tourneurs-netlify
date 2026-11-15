@@ -1,3 +1,4 @@
+
 User-agent: *
 Allow: /
 
@@ -5,6 +6,5 @@ Disallow: /admin/
 Disallow: /404.html
 Disallow: /iscrizione-inviata.html
 Disallow: /lavori-in-corso.html
-Disallow: /news-articolo.html
 
 Sitemap: https://tourneurs.it/sitemap.xml
