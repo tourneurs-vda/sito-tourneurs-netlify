@@ -622,13 +622,23 @@ footer{padding:0 0 56px;color:var(--muted)}
   margin:auto;
 }
 
+/* Copertina dell'articolo: mostra l'immagine intera, senza ritagli.
+   news.js assegna solo background-image, quindi queste regole restano valide. */
 .article-cover{
-  height:360px;
+  height:clamp(340px, 65vh, 620px);
   border-radius:24px;
   margin-bottom:24px;
-  background:
-    linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.4)),
-    url('../img/brand/logo-concorso-torniamo.jpg') center/cover;
+  background-color:#f3ebe3;
+  background-image:url('../img/brand/logo-concorso-torniamo.jpg');
+  background-position:center;
+  background-size:contain;
+  background-repeat:no-repeat;
+}
+
+@media (max-width: 860px){
+  .article-cover{
+    height:clamp(320px, 60vh, 520px);
+  }
 }
 
 .article-content{
