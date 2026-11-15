@@ -27,7 +27,8 @@ content:
           collapsible:
             collapsed: true
             summary: "{date} — {title} — {author}"
-          - name: author
+        fields:
+         - name: author
             label: Autore (uso interno)
             type: select
             required: false
@@ -37,7 +38,6 @@ content:
                 - Emil
                 - Ezio
                 - Andrea
-        fields:
           - name: published
             label: Pubblicato
             type: boolean
