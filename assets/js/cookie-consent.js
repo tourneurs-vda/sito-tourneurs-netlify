@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const MEASUREMENT_ID = "G-Q87LS9Z1VQ";
+  const MEASUREMENT_ID = "G-Q07LS9Z1VQ";
   const KEY = "tourneurs.analytics.consent.v1";
   const POLICY = "privacy.html";
   let analyticsLoaded = false;
