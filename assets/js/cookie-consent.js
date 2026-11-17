@@ -48,13 +48,21 @@
       border:1px solid #c8b8ab;
     }
     .tc-cookie-settings {
-      position:fixed;z-index:9997;
-      bottom:12px;left:12px;
-      padding:7px 11px;border-radius:11px;
-      border:1px solid #ddcbbd;
-      color:#4b3628;background:#fffaf5;
-      box-shadow:0 4px 14px #0002;
-      font:600 12px system-ui,sans-serif;
+      /* TOURNEURS_COOKIE_FOOTER_V1 */
+      display:inline-block !important;
+      position:static !important;
+      padding:0;
+      margin:0;
+      border:0;
+      border-radius:0;
+      background:transparent;
+      box-shadow:none;
+      color:inherit;
+      font:inherit;
+      font-size:inherit;
+      font-weight:inherit;
+      text-decoration:underline;
+      text-underline-offset:3px;
       cursor:pointer;
     }
     @media(max-width:550px) {
@@ -180,7 +188,35 @@
   });
 
   function init() {
-    document.body.append(settings);
+    const footerLinks = document.querySelector(".footer-links");
+    const footerLine = document.querySelector(".footer-line");
+    const footerElement = document.querySelector("footer");
+
+    if (footerLinks) {
+      const separator = document.createElement("span");
+      separator.textContent = " \u00B7 ";
+      separator.setAttribute("aria-hidden", "true");
+      footerLinks.append(separator, settings);
+    } else if (footerLine) {
+      const separator = document.createElement("span");
+      separator.textContent = " Â· ";
+      separator.setAttribute("aria-hidden", "true");
+      footerLine.append(separator, settings);
+    } else {
+      const footer = document.createElement("div");
+      footer.className = "tc-cookie-footer";
+      footer.style.cssText =
+        "padding:24px 16px;text-align:center;font-size:14px;" +
+        "background:#fbf8f4;color:#51443a;";
+      footer.append(settings);
+
+      if (footerElement) {
+        footerElement.append(footer);
+      } else {
+        (document.querySelector("main") || document.body)
+          .append(footer);
+      }
+    }
 
     const saved = choice();
     if (saved === "yes") {
