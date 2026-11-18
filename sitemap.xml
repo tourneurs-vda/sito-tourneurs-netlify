@@ -44,4 +44,6 @@
     <loc>https://tourneurs.it/archivio-storico</loc>
     <priority>0.7</priority>
   </url>
+  <url><loc>https://tourneurs.it/concorso-2016</loc></url>
+  <url><loc>https://tourneurs.it/galleria-generale</loc></url>
 </urlset>
