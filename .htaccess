@@ -2,6 +2,9 @@
 <IfModule mod_rewrite.c>
 RewriteEngine On
 
+# SEO 18-11-2026 - Recupero vecchio URL concorso
+RewriteRule ^notizie/concorso-di-tornitura-torni-amo-il-legno-2026-iscriviti/?$ https://tourneurs.it/concorso [R=301,L,NC]
+
 # Reindirizzamento www verso tourneurs.it
 RewriteCond %{HTTP_HOST} ^www\.tourneurs\.it$ [NC]
 RewriteRule ^(.*)$ https://tourneurs.it/$1 [R=301,L]
